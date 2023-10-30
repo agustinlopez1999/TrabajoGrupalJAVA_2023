@@ -34,9 +34,9 @@ public class Accesory {
     @Override
     public String toString() {
         return "Accesory{" +
-                "id=" + id +
-                ", description='" + description + '\'' +
-                ", price=" + price +
+                "id =" + id +
+                ", description ='" + description + '\'' +
+                ", price =" + price +
                 '}';
     }
 }
