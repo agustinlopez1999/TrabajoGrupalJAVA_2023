@@ -1,5 +1,6 @@
 package Domain_clases;
 
+//test
 public class Stand {
     private String code;
     private float surface;
