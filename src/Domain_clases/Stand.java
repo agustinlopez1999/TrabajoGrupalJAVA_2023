@@ -1,6 +1,5 @@
 package Domain_clases;
 
-//test
 public class Stand {
     private String code;
     private float surface;
@@ -24,6 +23,18 @@ public class Stand {
 
     public void setM2price(float m2price) {
         this.m2price = m2price;
+    }
+
+    public String getCode() {
+        return code;
+    }
+
+    public float getSurface() {
+        return surface;
+    }
+
+    public float getM2price() {
+        return m2price;
     }
 
     @Override
