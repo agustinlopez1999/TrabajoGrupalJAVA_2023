@@ -1,11 +1,11 @@
 package Domain_clases;
 
-public class Accesory {
+public class Accessory {
     private int id;
     private String description;
     private float price;
 
-    public Accesory(int id, String description, float price) {
+    public Accessory(int id, String description, float price) {
         this.id = id;
         this.description = description;
         this.price = price;
@@ -33,7 +33,7 @@ public class Accesory {
 
     @Override
     public String toString() {
-        return "Accesory{" +
+        return "Accessory{" +
                 "id =" + id +
                 ", description ='" + description + '\'' +
                 ", price =" + price +
