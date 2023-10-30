@@ -15,3 +15,4 @@ public class Outside extends Stand {
             return getSurface() * getM2price() + getAccesorySumPrice();
     }
 }
+
