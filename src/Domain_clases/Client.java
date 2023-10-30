@@ -2,7 +2,7 @@ package Domain_clases;
 
 public class Client {
     private int number;
-    private String Name;
+    private String Names;
     private String LastName;
     private String Bussines;
 
