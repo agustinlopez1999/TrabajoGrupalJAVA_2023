@@ -1,4 +1,4 @@
-package Domain_clases;
+package Domain_classes;
 
 public class Client {
     private int number;
@@ -6,6 +6,8 @@ public class Client {
     private String LastName;
     private String Bussines;
 
+    public Client() {
+    }
     public Client(int number, String name, String lastName) {
         this.number = number;
         Name = name;
@@ -16,7 +18,7 @@ public class Client {
         this.number = number;
         Bussines = bussines;
     }
-
+    //Getters
     public int getNumber() {
         return number;
     }
@@ -32,6 +34,8 @@ public class Client {
     public String getBussines() {
         return Bussines;
     }
+
+    //Setters
 
     public void setNumber(int number) {
         this.number = number;

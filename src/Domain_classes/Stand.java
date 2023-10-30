@@ -1,9 +1,14 @@
-package Domain_clases;
+package Domain_classes;
+import java.util.*;
 
 public class Stand {
     private String code;
     private float surface;
     private float m2price;
+
+
+    private ArrayList<Accessory> accesories = new ArrayList<Accessory>();
+
 
     public Stand() {
     }
@@ -13,6 +18,7 @@ public class Stand {
         this.m2price = m2price;
     }
 
+    //setters
     public void setCode(String code) {
         this.code = code;
     }
@@ -25,6 +31,7 @@ public class Stand {
         this.m2price = m2price;
     }
 
+    //getters
     public String getCode() {
         return code;
     }
@@ -37,6 +44,24 @@ public class Stand {
         return m2price;
     }
 
+    public float finalValue(){
+        return 0;
+    }
+
+    public void addAccessory(Accessory _accesory){
+        accesories.add(_accesory);
+    }
+
+    //for (String cancion : canciones) {
+    //  System.out.println(cancion);
+    //}
+    public float getAccesorySumPrice(){
+        float total = 0;
+        for(Accessory aux:accesories)
+            total+=aux.getPrice();
+        return total;
+    }
+
     @Override
     public String toString() {
         return "Stand{" +
@@ -45,4 +70,5 @@ public class Stand {
                 ", m2price=" + m2price +
                 '}';
     }
+
 }

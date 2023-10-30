@@ -1,4 +1,4 @@
-package Domain_clases;
+package Domain_classes;
 
 public class Accessory {
     private int id;
