@@ -62,6 +62,13 @@ public class Stand {
         return total;
     }
 
+    public int getAccesoryAmount(){
+        int total = 0;
+        for(Accessory aux:accesories)
+            total++;
+        return total;
+    }
+
     @Override
     public String toString() {
         return "Stand{" +
