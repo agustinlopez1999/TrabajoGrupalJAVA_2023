@@ -24,4 +24,13 @@ public class Stand {
     public void setM2price(float m2price) {
         this.m2price = m2price;
     }
+
+    @Override
+    public String toString() {
+        return "Stand{" +
+                "code='" + code + '\'' +
+                ", surface=" + surface +
+                ", m2price=" + m2price +
+                '}';
+    }
 }
