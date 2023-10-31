@@ -49,7 +49,7 @@ public class ClassXML {
                     float m2price = parseFloatElement(standElement, "m2price");
                     int luminaries = parseIntElement(standElement, "luminaries");
 
-                    if (type.isEmpty() || code.isEmpty() || surface <= 0 || m2price <= 0) {
+                    if ( surface <= 0 || m2price <= 0) {
                         errors.add("Error en el stand: " + code + " - Datos inválidos o incompletos.");
                         continue; // Si tiene errores, lo saltea y continua
                     }
@@ -76,7 +76,7 @@ public class ClassXML {
                     Stand stand;
 
                     if (type.equals("Inside")) {
-                        stand = new Inside(code, surface, m2price, accessories, client, luminaries);
+                        stand = new Inside(code, surface, m2price, accessories, client, luminaries); // luminarias puede ser vacio.
                     } else {
                         stand = new Outside(code, surface, m2price, accessories, client);
                     }

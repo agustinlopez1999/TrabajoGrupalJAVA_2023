@@ -18,7 +18,7 @@ public class Fair {
     public void setStands(ArrayList<Stand> stands) {
         this.stands = stands;
     }
-    public void setErrors(ArrayList<String> errors){ this.errors = errors; }
+    public void setErrors(ArrayList<String> errors){this.errors = errors; }
     public void loadStandsFromXML() {
         ArrayList<Stand> loadedStands = ClassXML.loadFairXML().getStands();
         this.stands = loadedStands;
@@ -28,7 +28,7 @@ public class Fair {
     }
 
     public void showErrors(){
-        if(errors==null)
+        if(errors.isEmpty())
             System.out.println("No hubo errores en la carga de los datos");
         else
             for(String error: errors)
