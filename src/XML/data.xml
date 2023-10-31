@@ -51,5 +51,32 @@
                 <name>Ulises</name>
             </client>
         </Stand>
+        <Stand>
+            <type>Outside</type>
+            <code>VVV333</code>
+            <surface>-10</surface>
+            <m2price>-10</m2price>
+            <accessories>
+                <Accessory>
+                    <id>4930</id>
+                    <description>Chair</description>
+                    <price>120</price>
+                </Accessory>
+                <Accessory>
+                    <id>4935</id>
+                    <description>Small Chair</description>
+                    <price>90</price>
+                </Accessory>
+                <Accessory>
+                    <id>9201</id>
+                    <description>Table</description>
+                    <price>350</price>
+                </Accessory>
+            </accessories>
+            <client>
+                <id>48000000</id>
+                <name>Franco</name>
+            </client>
+        </Stand>
     </Stands>
 </fair>

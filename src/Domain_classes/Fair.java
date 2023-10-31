@@ -7,7 +7,8 @@ public class Fair {
     private ArrayList<Stand> stands;
     private ArrayList<String> errors;
     public Fair() {
-        this.stands = new ArrayList<>();
+        this.stands = new ArrayList<Stand>();
+        this.errors = new ArrayList<String>();
     }
 
     private ArrayList<Stand> getStands() {
