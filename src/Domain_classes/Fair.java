@@ -5,7 +5,7 @@ import XML.*;
 
 public class Fair {
     private ArrayList<Stand> stands;
-
+    private ArrayList<String> errors;
     public Fair() {
         this.stands = new ArrayList<>();
     }
@@ -17,13 +17,22 @@ public class Fair {
     public void setStands(ArrayList<Stand> stands) {
         this.stands = stands;
     }
-
+    public void setErrors(ArrayList<String> errors){ this.errors = errors; }
     public void loadStandsFromXML() {
         ArrayList<Stand> loadedStands = ClassXML.loadFairXML().getStands();
         this.stands = loadedStands;
     }
     public boolean Empty(){
         return stands==null;
+    }
+
+    public void showErrors(){
+        if(errors==null)
+            System.out.println("No hubo errores en la carga de los datos");
+        else
+            for(String error: errors)
+                System.out.println(error);
+
     }
     public void show(){
         for (Stand stand : stands){
