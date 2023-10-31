@@ -6,7 +6,6 @@ public class Stand {
     private float surface;
     private float m2price;
 
-
     private ArrayList<Accessory> accesories = new ArrayList<Accessory>();
 
 
@@ -52,9 +51,7 @@ public class Stand {
         accesories.add(_accesory);
     }
 
-    //for (String cancion : canciones) {
-    //  System.out.println(cancion);
-    //}
+
     public float getAccesorySumPrice(){
         float total = 0;
         for(Accessory aux:accesories)
