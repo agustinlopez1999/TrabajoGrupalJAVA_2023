@@ -28,7 +28,7 @@ public class ClassXML {
     public static Fair loadFairXML() {
         Fair fair = new Fair();
         ArrayList<Stand> stands = new ArrayList<>();
-
+        ArrayList<String> errors = new ArrayList<>();
         try {
             // leemos el XML a traves del xml de github para evitar rutas totales.
             String url = "https://raw.githubusercontent.com/agustinlopez1999/TrabajoGrupalJAVA_2023/master/src/XML/data.xml";
@@ -48,6 +48,11 @@ public class ClassXML {
                     int surface = parseIntElement(standElement, "surface");
                     float m2price = parseFloatElement(standElement, "m2price");
                     int luminaries = parseIntElement(standElement, "luminaries");
+
+                    if (type.isEmpty() || code.isEmpty() || surface <= 0 || m2price <= 0) {
+                        errors.add("Error en el stand: " + code + " - Datos inválidos o incompletos.");
+                        continue; // Si tiene errores, lo saltea y continua
+                    }
 
                     NodeList accessoriesNodes = standElement.getElementsByTagName("Accessory");
                     ArrayList<Accessory> accessories = new ArrayList<>();
@@ -82,7 +87,7 @@ public class ClassXML {
         } catch (ParserConfigurationException | IOException | SAXException ex) {
             throw new RuntimeException(ex);
         }
-
+        fair.setErrors(errors);
         fair.setStands(stands);
         return fair;
     }
