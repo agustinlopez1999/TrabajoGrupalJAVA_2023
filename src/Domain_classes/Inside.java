@@ -12,4 +12,9 @@ public class Inside extends Stand {
     public float finalValue() {
         return getAccesorySumPrice()+getM2price()*getSurface()+1000*luminaries;
     }
+
+    @Override
+    public String toString() {
+        return super.toString() + "Luminaries= "+luminaries;
+    }
 }
