@@ -3,6 +3,9 @@
     <Stands>
         <Stand>
             <type>Inside</type>
+            <code>jDILk4</code>
+            <surface>1000</surface>
+            <m2price>40</m2price>
             <luminaries>5</luminaries>
             <accessories>
                 <Accessory>
@@ -19,12 +22,13 @@
             <client>
                 <id>42044284</id>
                 <name>Agustin</name>
-                <lastName>Lopez</lastName>
-                <business>Bar</business>
             </client>
         </Stand>
         <Stand>
             <type>Outside</type>
+            <code>Mp3Lk2</code>
+            <surface>1700</surface>
+            <m2price>60</m2price>
             <accessories>
                 <Accessory>
                     <id>4930</id>
@@ -45,8 +49,6 @@
             <client>
                 <id>44948204</id>
                 <name>Ulises</name>
-                <lastName>Fritz</lastName>
-                <business>FoodAndBeverage</business>
             </client>
         </Stand>
     </Stands>
