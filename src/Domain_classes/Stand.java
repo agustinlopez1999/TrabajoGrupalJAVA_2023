@@ -55,6 +55,9 @@ public class Stand {
         accesories.add(_accesory);
     }
 
+    public Client getStandClient() {
+        return standClient;
+    }
 
     public float getAccesorySumPrice(){
         float total = 0;
@@ -68,6 +71,10 @@ public class Stand {
         for(Accessory aux:accesories)
             total++;
         return total;
+    }
+
+    public ArrayList<Accessory> getAccesories() {
+        return accesories;
     }
 
     @Override

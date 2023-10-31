@@ -10,6 +10,14 @@ public class Inside extends Stand {
         this.luminaries = luminaries;
     }
 
+    public int getLuminaries() {
+        return luminaries;
+    }
+
+    public void setLuminaries(int luminaries) {
+        this.luminaries = luminaries;
+    }
+
     @Override
     public float finalValue() {
         return getAccesorySumPrice()+getM2price()*getSurface()+1000*luminaries;

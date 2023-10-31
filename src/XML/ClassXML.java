@@ -7,12 +7,21 @@ import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 import org.xml.sax.SAXException;
 
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.net.URL;
+import java.net.URLConnection;
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
 import javax.xml.parsers.ParserConfigurationException;
-import java.io.File;
-import java.io.IOException;
+import org.w3c.dom.Document;
+import org.w3c.dom.Element;
+import org.w3c.dom.Node;
+import org.w3c.dom.NodeList;
+import org.xml.sax.SAXException;
 import java.util.ArrayList;
+
 
 public class ClassXML {
 
@@ -21,11 +30,12 @@ public class ClassXML {
         ArrayList<Stand> stands = new ArrayList<>();
 
         try {
-            File xmlFile = new File("/Users/agustinlopez/Desktop/Facultad/AYED 2 2do Cuatri/Trabajo Grupal/feria/src/XML/data.xml");
-
+            // leemos el XML a traves del xml de github para evitar rutas totales.
+            String url = "https://raw.githubusercontent.com/agustinlopez1999/TrabajoGrupalJAVA_2023/master/src/XML/data.xml";
+            URLConnection connection = new URL(url).openConnection();
             DocumentBuilderFactory dbFactory = DocumentBuilderFactory.newInstance();
             DocumentBuilder dBuilder = dbFactory.newDocumentBuilder();
-            Document doc = dBuilder.parse(xmlFile);
+            Document doc = dBuilder.parse(connection.getInputStream());
             doc.getDocumentElement().normalize();
 
             NodeList standNodes = doc.getElementsByTagName("Stand");
@@ -33,11 +43,11 @@ public class ClassXML {
                 Node standNode = standNodes.item(i);
                 if (standNode.getNodeType() == Node.ELEMENT_NODE) {
                     Element standElement = (Element) standNode;
-                    String type = standElement.getElementsByTagName("type").item(0).getTextContent();
-                    String code = standElement.getElementsByTagName("code").item(0).getTextContent();
-                    int surface = Integer.parseInt(standElement.getElementsByTagName("surface").item(0).getTextContent());
-                    float m2price = Float.parseFloat(standElement.getElementsByTagName("m2price").item(0).getTextContent());
-                    int luminaries = Integer.parseInt(standElement.getElementsByTagName("luminaries").item(0).getTextContent());
+                    String type = getElementText(standElement, "type");
+                    String code = getElementText(standElement, "code");
+                    int surface = parseIntElement(standElement, "surface");
+                    float m2price = parseFloatElement(standElement, "m2price");
+                    int luminaries = parseIntElement(standElement, "luminaries");
 
                     NodeList accessoriesNodes = standElement.getElementsByTagName("Accessory");
                     ArrayList<Accessory> accessories = new ArrayList<>();
@@ -45,16 +55,16 @@ public class ClassXML {
                         Node accessoryNode = accessoriesNodes.item(j);
                         if (accessoryNode.getNodeType() == Node.ELEMENT_NODE) {
                             Element accessoryElement = (Element) accessoryNode;
-                            int id = Integer.parseInt(accessoryElement.getElementsByTagName("id").item(0).getTextContent());
-                            String description = accessoryElement.getElementsByTagName("description").item(0).getTextContent();
-                            float price = Float.parseFloat(accessoryElement.getElementsByTagName("price").item(0).getTextContent());
+                            int id = Integer.parseInt(getElementText(accessoryElement, "id"));
+                            String description = getElementText(accessoryElement, "description");
+                            float price = Float.parseFloat(getElementText(accessoryElement, "price"));
                             accessories.add(new Accessory(id, description, price));
                         }
                     }
 
                     Element clientElement = (Element) standElement.getElementsByTagName("client").item(0);
-                    int clientId = Integer.parseInt(clientElement.getElementsByTagName("id").item(0).getTextContent());
-                    String name = clientElement.getElementsByTagName("name").item(0).getTextContent();
+                    int clientId = Integer.parseInt(getElementText(clientElement, "id"));
+                    String name = getElementText(clientElement, "name");
 
                     Client client = new Client(clientId, name);
 
@@ -75,5 +85,36 @@ public class ClassXML {
 
         fair.setStands(stands);
         return fair;
+    }
+
+    private static String getElementText(Element element, String tagName) {
+        NodeList nodeList = element.getElementsByTagName(tagName);
+        if (nodeList.getLength() > 0) {
+            return nodeList.item(0).getTextContent();
+        } else {
+            return ""; // si no existe
+        }
+    }
+
+    private static int parseIntElement(Element element, String tagName) {
+        NodeList nodeList = element.getElementsByTagName(tagName);
+        if (nodeList.getLength() > 0) {
+            String textContent = nodeList.item(0).getTextContent();
+            if (textContent != null && !textContent.isEmpty()) {
+                return Integer.parseInt(textContent);
+            }
+        }
+        return 0;
+    }
+
+    private static float parseFloatElement(Element element, String tagName) {
+        NodeList nodeList = element.getElementsByTagName(tagName);
+        if (nodeList.getLength() > 0) {
+            String textContent = nodeList.item(0).getTextContent();
+            if (textContent != null && !textContent.isEmpty()) {
+                return Float.parseFloat(textContent);
+            }
+        }
+        return 0.0f;
     }
 }
