@@ -7,9 +7,11 @@ public class Main {
         Fair fair = new Fair();
         fair.loadStandsFromXML();
 
-        if (fair.getStands() == null) {
+        if (fair.Empty()) {
             System.out.println("No se han cargado stands.");
         } else {
+            fair.show();
+            /*
             ArrayList<Stand> stands = fair.getStands();
             for (Stand stand : stands) {
                 System.out.println("Stand Details:");
@@ -36,6 +38,7 @@ public class Main {
 
                 System.out.println();
             }
+            */
         }
     }
 }
