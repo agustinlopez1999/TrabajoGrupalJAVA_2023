@@ -1,12 +1,15 @@
 package Domain_classes;
 
+import java.util.ArrayList;
+
 public class Outside extends Stand {
     public Outside() {
     }
 
-    public Outside(String code, float surface, float m2price) {
-        super(code, surface, m2price);
+    public Outside(String code, float surface, float m2price, ArrayList<Accessory> accesories, Client standClient) {
+        super(code, surface, m2price, accesories, standClient);
     }
+
     @Override
     public float finalValue() {
         if(getAccesoryAmount()>=3)
@@ -14,6 +17,8 @@ public class Outside extends Stand {
         else
             return getSurface() * getM2price() + getAccesorySumPrice();
     }
+
+    
 
 }
 

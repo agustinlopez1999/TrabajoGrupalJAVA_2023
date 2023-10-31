@@ -5,25 +5,28 @@ import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
+import org.xml.sax.SAXException;
 
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
+import javax.xml.parsers.ParserConfigurationException;
 import java.io.File;
+import java.io.IOException;
 import java.util.ArrayList;
 
 public class ClassXML {
 
     public static Fair loadFairXML() {
+        Fair fair = new Fair();
+        ArrayList<Stand> stands = new ArrayList<>();
+
         try {
-            File xmlFile = new File("path/to/your/xml/fair.xml"); // Reemplazar con la ruta real del archivo XML
+            File xmlFile = new File("/Users/agustinlopez/Desktop/Facultad/AYED 2 2do Cuatri/Trabajo Grupal/feria/src/XML/data.xml");
 
             DocumentBuilderFactory dbFactory = DocumentBuilderFactory.newInstance();
             DocumentBuilder dBuilder = dbFactory.newDocumentBuilder();
             Document doc = dBuilder.parse(xmlFile);
             doc.getDocumentElement().normalize();
-
-            Fair fair = new Fair();
-            ArrayList<Stand> stands = new ArrayList<>();
 
             NodeList standNodes = doc.getElementsByTagName("Stand");
             for (int i = 0; i < standNodes.getLength(); i++) {
@@ -54,17 +57,23 @@ public class ClassXML {
                     String name = clientElement.getElementsByTagName("name").item(0).getTextContent();
 
                     Client client = new Client(clientId, name);
-                    if(type.equals("Inside"))
-                        Stand stand = new Inside(code, surface, m2price, luminaries, accessories, client);
+
+                    Stand stand;
+
+                    if (type.equals("Inside")) {
+                        stand = new Inside(code, surface, m2price, accessories, client, luminaries);
+                    } else {
+                        stand = new Outside(code, surface, m2price, accessories, client);
+                    }
+
                     stands.add(stand);
                 }
             }
-
-            fair.setStands(stands);
-            return fair;
-        } catch (Exception e) {
-            e.printStackTrace();
+        } catch (ParserConfigurationException | IOException | SAXException ex) {
+            throw new RuntimeException(ex);
         }
-        return new Fair();
+
+        fair.setStands(stands);
+        return fair;
     }
 }
