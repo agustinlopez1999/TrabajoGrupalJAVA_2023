@@ -38,9 +38,11 @@ public class Fair {
             System.out.println("Accessories:");
             ArrayList<Accessory> accessories = stand.getAccesories();
             for (Accessory accessory : accessories) {
+                System.out.println("{");
                 System.out.println("ID: " + accessory.getId());
                 System.out.println("Description: " + accessory.getDescription());
                 System.out.println("Price: " + accessory.getPrice());
+                System.out.println("}");
             }
 
             Client client = stand.getStandClient();
