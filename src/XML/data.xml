@@ -124,5 +124,28 @@
                 <name>Agustin</name>
             </client>
         </Stand>
+        <Stand>
+            <type>Inside</type>
+            <code>AAAAa1</code>
+            <surface>1000</surface>
+            <m2price>40</m2price>
+            <luminaries>5</luminaries>
+            <accessories>
+                <Accessory>
+                    <id>4930</id>
+                    <description>Chair</description>
+                    <price>120</price>
+                </Accessory>
+                <Accessory>
+                    <id>9201</id>
+                    <description>Table</description>
+                    <price>350</price>
+                </Accessory>
+            </accessories>
+            <client>
+                <id>42044284</id>
+                <name>Agustin</name>
+            </client>
+        </Stand>
     </Stands>
 </fair>
