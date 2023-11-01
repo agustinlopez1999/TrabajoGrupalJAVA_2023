@@ -52,7 +52,7 @@
             </client>
         </Stand>
         <Stand>
-            <type>Outside</type>
+            <type></type>
             <code>VVV333</code>
             <surface>-10</surface>
             <m2price>-10</m2price>

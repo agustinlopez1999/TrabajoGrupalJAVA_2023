@@ -49,7 +49,7 @@ public class ClassXML {
                     float m2price = parseFloatElement(standElement, "m2price");
                     int luminaries = parseIntElement(standElement, "luminaries");
 
-                    if ( surface <= 0 || m2price <= 0) {
+                    if ( code.isEmpty() ||type.isEmpty() ||surface <= 0 || m2price <= 0) {
                         errors.add("Error en el stand: " + code + " - Datos inválidos o incompletos.");
                         continue; // Si tiene errores, lo saltea y continua
                     }
@@ -87,7 +87,9 @@ public class ClassXML {
         } catch (ParserConfigurationException | IOException | SAXException ex) {
             throw new RuntimeException(ex);
         }
-        fair.setErrors(errors);
+        for(String error: errors){
+            System.out.println(error);
+        }
         fair.setStands(stands);
         return fair;
     }
