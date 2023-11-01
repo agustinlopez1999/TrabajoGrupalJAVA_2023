@@ -95,7 +95,9 @@ public class ClassXML {
                         stand = new Outside(code, surface, m2price, accessories, client);
                     }
 
-                    stands.add(stand);
+                    if(!stands.add(stand)){
+                        errors.add("Stand Code ["+code+"] already exists.");
+                    }
                 }
             }
         } catch (ParserConfigurationException | IOException | SAXException ex) {
