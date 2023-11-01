@@ -1,8 +1,12 @@
 package Domain_classes;
+//package Comparator;
 
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.TreeSet;
 
+
+import Comparator.StandPriceComparator;
 import XML.*;
 
 public class Fair {
@@ -76,4 +80,27 @@ public class Fair {
             System.out.println("----------------------------------------");
         }
     }
+
+    public void showStandsByPrice(){
+        ArrayList<Stand> standsByPrice = new ArrayList<>((Collection) new StandPriceComparator());
+        // Agregar todos los elementos de standsByCode al nuevo TreeSet ordenado por precio
+        standsByPrice.addAll(stands);
+        System.out.println("STANDS BY PRICE");
+        for (Stand aux : standsByPrice){
+            System.out.println("code:" + aux.getCode() + " final price: "+ aux.finalValue());
+        }
+    }
+    public void showStandsByPrice2() {
+        // Crear un nuevo ArrayList e inicializarlo con los elementos del TreeSet
+        ArrayList<Stand> standsByPrice = new ArrayList<>(stands);
+
+        System.out.println("STANDS BY PRICE");
+        for (Stand aux : standsByPrice) {
+            System.out.println("code: " + aux.getCode() + " final price: " + aux.finalValue());
+        }
+    }
+
+
+
+
 }
