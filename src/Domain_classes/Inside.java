@@ -25,6 +25,6 @@ public class Inside extends Stand {
 
     @Override
     public String toString() {
-        return super.toString() + "\nLuminaries: " + luminaries;
+        return super.toString() + "Luminaries: " + luminaries;
     }
 }

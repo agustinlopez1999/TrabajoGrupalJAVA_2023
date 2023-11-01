@@ -77,6 +77,8 @@ public class Stand implements Comparable<Stand>{
         return accesories;
     }
 
+
+
     @Override
     public String toString() {
         StringBuilder sb = new StringBuilder();

@@ -27,7 +27,7 @@ public class Fair {
     }
 
     
-    public void show(){
+    public void showAllStands(){
         for (Stand stand : stands){
             System.out.println("\t(Stand Details:)");
             System.out.println("Code: " + stand.getCode());
@@ -52,9 +52,22 @@ public class Fair {
             System.out.println("Client:");
             System.out.println("Client Number: " + client.getNumber());
             System.out.println("Client Name: " + client.getName());
-
             System.out.println();
         }
+    }
+
+    public void showClientStands(int _codeNumber){
+        boolean flag = false;
+        System.out.println("Client ["+_codeNumber+"] Stand/s:");
+        for(Stand stand : stands){
+            if(stand.getStandClient().getNumber() == _codeNumber){
+                flag = true;
+                System.out.println(stand.toString());
+                System.out.println("");
+            }
+        }
+        if(!flag)
+            System.out.println("NO STANDS REGISTERED");
     }
 
     public void printStandsDetails() {
