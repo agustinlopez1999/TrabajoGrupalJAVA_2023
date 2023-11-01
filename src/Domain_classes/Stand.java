@@ -1,7 +1,7 @@
 package Domain_classes;
 import java.util.*;
 
-public class Stand {
+public class Stand implements Comparable<Stand>{
     private String code;
     private float surface;
     private float m2price;
@@ -96,4 +96,8 @@ public class Stand {
         return sb.toString();
     }
 
+    @Override
+    public int compareTo(Stand auxstand) {
+        return this.code.compareTo(auxstand.code);
+    }
 }

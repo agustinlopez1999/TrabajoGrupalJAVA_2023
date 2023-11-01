@@ -21,13 +21,14 @@ import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 import org.xml.sax.SAXException;
 import java.util.ArrayList;
+import java.util.TreeSet;
 
 
 public class ClassXML {
 
     public static Fair loadFairXML() {
         Fair fair = new Fair();
-        ArrayList<Stand> stands = new ArrayList<>();
+        TreeSet<Stand> stands = new TreeSet<>();
         ArrayList<String> errors = new ArrayList<>();
         try {
             // leemos el XML a traves del xml de github para evitar rutas totales.

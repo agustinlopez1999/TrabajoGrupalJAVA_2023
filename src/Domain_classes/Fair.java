@@ -1,29 +1,32 @@
 package Domain_classes;
 
 import java.util.ArrayList;
+import java.util.TreeSet;
+
 import XML.*;
 
 public class Fair {
-    private ArrayList<Stand> stands;
+    private TreeSet<Stand> stands;
     public Fair() {
-        this.stands = new ArrayList<Stand>();
+        this.stands = new TreeSet<Stand>();
     }
 
-    private ArrayList<Stand> getStands() {
+    private TreeSet<Stand> getStands() {
         return stands;
     }
 
-    public void setStands(ArrayList<Stand> stands) {
+    public void setStands(TreeSet<Stand> stands) {
         this.stands = stands;
     }
     public void loadStandsFromXML() {
-        ArrayList<Stand> loadedStands = ClassXML.loadFairXML().getStands();
+        TreeSet<Stand> loadedStands = ClassXML.loadFairXML().getStands();
         this.stands = loadedStands;
     }
     public boolean Empty(){
         return stands==null;
     }
 
+    
     public void show(){
         for (Stand stand : stands){
             System.out.println("Stand Details:");
