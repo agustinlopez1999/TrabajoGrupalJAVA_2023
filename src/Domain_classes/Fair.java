@@ -29,7 +29,7 @@ public class Fair {
     
     public void show(){
         for (Stand stand : stands){
-            System.out.println("Stand Details:");
+            System.out.println("\t(Stand Details:)");
             System.out.println("Code: " + stand.getCode());
             System.out.println("Surface: " + stand.getSurface());
             System.out.println("M2 Price: " + stand.getM2price());

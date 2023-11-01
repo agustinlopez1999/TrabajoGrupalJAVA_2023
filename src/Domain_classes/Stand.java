@@ -80,7 +80,7 @@ public class Stand implements Comparable<Stand>{
     @Override
     public String toString() {
         StringBuilder sb = new StringBuilder();
-        sb.append("\t(Stand details:)\n");
+        sb.append("Stand details:\n");
         sb.append("Code: ").append(code).append("\n");
         sb.append("Surface: ").append(surface).append("\n");
         sb.append("Price per m²: ").append(m2price).append("\n");
