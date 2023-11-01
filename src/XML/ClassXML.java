@@ -49,9 +49,22 @@ public class ClassXML {
                     float m2price = parseFloatElement(standElement, "m2price");
                     int luminaries = parseIntElement(standElement, "luminaries");
 
-                    if (type.isEmpty() || code.isEmpty() || surface <= 0 || m2price <= 0) {
-                        errors.add("Error en el stand: " + code + " - Datos inválidos o incompletos.");
-                        continue; // Si tiene errores, lo saltea y continua
+                    if(code.isEmpty() || type.isEmpty()|| surface <=0 || m2price <=0 && (type.equals("Inside") && luminaries<0)) {
+                        if (code.isEmpty()) {
+                            errors.add("The stand doesn't have a code");
+                            code = "NULL"; // ?
+                        }
+                        if (type.isEmpty())
+                            errors.add("The stand with the: " + code + " doesn´t have a type or is invalid");
+                        if (surface <= 0) //si esta vacio?
+                            errors.add("The stand with the code " + code + " has a impossible value to surface");
+                        if (m2price <= 0)
+                            errors.add("The stand with the code " + code + " has a impossible value to square meters price");
+                        if (type.equals("Inside")) {
+                            if(luminaries < 0)
+                                errors.add("The Inside stand with the code " + code + " has a impossible value to luminaries");
+                        }
+                        continue;
                     }
 
                     NodeList accessoriesNodes = standElement.getElementsByTagName("Accessory");
@@ -76,7 +89,7 @@ public class ClassXML {
                     Stand stand;
 
                     if (type.equals("Inside")) {
-                        stand = new Inside(code, surface, m2price, accessories, client, luminaries);
+                        stand = new Inside(code, surface, m2price, accessories, client, luminaries); // luminarias puede ser vacio.
                     } else {
                         stand = new Outside(code, surface, m2price, accessories, client);
                     }
@@ -87,7 +100,9 @@ public class ClassXML {
         } catch (ParserConfigurationException | IOException | SAXException ex) {
             throw new RuntimeException(ex);
         }
-        fair.setErrors(errors);
+        for(String error: errors){
+            System.out.println(error);
+        }
         fair.setStands(stands);
         return fair;
     }

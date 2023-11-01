@@ -12,6 +12,5 @@ public class Main {
         } else {
             fair.show();
         }
-        fair.showErrors();
     }
 }

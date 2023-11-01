@@ -5,10 +5,8 @@ import XML.*;
 
 public class Fair {
     private ArrayList<Stand> stands;
-    private ArrayList<String> errors;
     public Fair() {
         this.stands = new ArrayList<Stand>();
-        this.errors = new ArrayList<String>();
     }
 
     private ArrayList<Stand> getStands() {
@@ -18,7 +16,6 @@ public class Fair {
     public void setStands(ArrayList<Stand> stands) {
         this.stands = stands;
     }
-    public void setErrors(ArrayList<String> errors){ this.errors = errors; }
     public void loadStandsFromXML() {
         ArrayList<Stand> loadedStands = ClassXML.loadFairXML().getStands();
         this.stands = loadedStands;
@@ -27,14 +24,6 @@ public class Fair {
         return stands==null;
     }
 
-    public void showErrors(){
-        if(errors==null)
-            System.out.println("No hubo errores en la carga de los datos");
-        else
-            for(String error: errors)
-                System.out.println(error);
-
-    }
     public void show(){
         for (Stand stand : stands){
             System.out.println("Stand Details:");
@@ -49,9 +38,11 @@ public class Fair {
             System.out.println("Accessories:");
             ArrayList<Accessory> accessories = stand.getAccesories();
             for (Accessory accessory : accessories) {
+                System.out.println("{");
                 System.out.println("ID: " + accessory.getId());
                 System.out.println("Description: " + accessory.getDescription());
                 System.out.println("Price: " + accessory.getPrice());
+                System.out.println("}");
             }
 
             Client client = stand.getStandClient();
