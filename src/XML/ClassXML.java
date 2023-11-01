@@ -45,7 +45,7 @@ public class ClassXML {
                 if (standNode.getNodeType() == Node.ELEMENT_NODE) {
                     Element standElement = (Element) standNode;
                     String type = getElementText(standElement, "type");
-                    String code = getElementText(standElement, "code");
+                    String code = getElementText(standElement, "code").toUpperCase();
                     int surface = parseIntElement(standElement, "surface");
                     float m2price = parseFloatElement(standElement, "m2price");
                     int luminaries = parseIntElement(standElement, "luminaries");
