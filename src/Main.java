@@ -12,6 +12,6 @@ public class Main {
         }
 
         //fair.showClientStands(44948204);
-        fair.showStandsByPrice2();
+        fair.showStandsByPrice();
     }
 }
