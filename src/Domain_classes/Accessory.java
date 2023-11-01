@@ -4,7 +4,6 @@ public class Accessory {
     private int id;
     private String description;
     private float price;
-
     public Accessory(int id, String description, float price) {
         this.id = id;
         this.description = description;

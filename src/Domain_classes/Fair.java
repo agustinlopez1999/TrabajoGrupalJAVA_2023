@@ -1,7 +1,10 @@
 package Domain_classes;
 
 import java.util.ArrayList;
+import java.util.TreeMap;
 import java.util.TreeSet;
+
+import Comparator.AccessoriesComparator;
 import Comparator.StandPriceComparator;
 import XML.*;
 
@@ -88,6 +91,20 @@ public class Fair{
     }
 
 
-
+    public TreeMap loadAccessories(){
+        AccessoriesComparator accessoriesComparator = new AccessoriesComparator();
+        TreeMap<Accessory, Integer> tMap = new TreeMap<Accessory, Integer>(accessoriesComparator);
+        Integer count;
+        for (Stand stand: stands) {
+            for (Accessory accessory : stand.getAccesories()) {
+                count = tMap.get(accessory);
+                if (count == null)
+                    tMap.put(accessory, 1);
+                else
+                    tMap.put(accessory, count + 1);
+            }
+        }
+        return tMap;
+    }
 
 }

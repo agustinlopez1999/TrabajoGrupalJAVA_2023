@@ -1,4 +1,5 @@
 import Domain_classes.*;
+import Reports.AccessoryReport;
 
 public class Main {
     public static void main(String[] args) {
@@ -12,6 +13,8 @@ public class Main {
         }
 
         //fair.showClientStands(44948204);
-        fair.showStandsByPrice();
+        //fair.showStandsByPrice();
+        AccessoryReport a = new AccessoryReport();
+        a.showReportAccessories(fair);
     }
 }
