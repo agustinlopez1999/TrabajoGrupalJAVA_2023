@@ -1,8 +1,6 @@
 package Domain_classes;
 
 import java.util.ArrayList;
-import java.util.Collection;
-import java.util.Collections;
 import java.util.TreeSet;
 import Comparator.StandPriceComparator;
 import XML.*;
@@ -10,7 +8,7 @@ import XML.*;
 public class Fair{
     private TreeSet<Stand> stands;
     public Fair() {
-        this.stands = new TreeSet<Stand>();
+        this.stands = new TreeSet<>();
     }
 
     private TreeSet<Stand> getStands() {
@@ -21,8 +19,7 @@ public class Fair{
         this.stands = stands;
     }
     public void loadStandsFromXML() {
-        TreeSet<Stand> loadedStands = ClassXML.loadFairXML().getStands();
-        this.stands = loadedStands;
+        this.stands = ClassXML.loadFairXML().getStands();
     }
     public boolean Empty(){
         return stands==null;
@@ -64,7 +61,7 @@ public class Fair{
         for(Stand stand : stands){
             if(stand.getStandClient().getNumber() == _codeNumber){
                 flag = true;
-                System.out.println(stand.toString());
+                System.out.println(stand);
                 System.out.println("");
             }
         }
