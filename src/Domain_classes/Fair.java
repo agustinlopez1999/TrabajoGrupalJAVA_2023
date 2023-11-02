@@ -83,11 +83,16 @@ public class Fair{
         StandPriceComparator priceComparator = new StandPriceComparator();
         // Crear un nuevo ArrayList e inicializarlo con los elementos del TreeSet
         ArrayList<Stand> standsByPrice = new ArrayList<>(stands);
+        int i=0;
+        float sum=0;
         standsByPrice.sort(priceComparator);
         System.out.println("STANDS BY PRICE");
         for (Stand aux : standsByPrice) {
+            i++;
+            sum+=aux.finalValue();
             System.out.println("code: " + aux.getCode() + " final price: " + aux.finalValue());
         }
+        System.out.println("Stands average price: $"+sum/i);
     }
 
 

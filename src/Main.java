@@ -14,7 +14,7 @@ public class Main {
 
         //fair.showClientStands(44948204);
         //fair.showStandsByPrice();
-        AccessoryReport a = new AccessoryReport();
-        a.showReportAccessories(fair);
+        //AccessoryReport a = new AccessoryReport();
+        //a.showReportAccessories(fair);
     }
 }
