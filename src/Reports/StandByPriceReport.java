@@ -8,6 +8,7 @@ import java.util.ArrayList;
 
 public class StandByPriceReport {
     public StandByPriceReport() {
+
     }
     public void showStandsByPrice(Fair fair) {
         ArrayList<Stand> standsByPrice;

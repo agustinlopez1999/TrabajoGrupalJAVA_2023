@@ -17,7 +17,7 @@ public class Main {
 
         //stands
         AccessoryReport report = new AccessoryReport();
-        report.showReportAccessories(fair,"test.txt");
+        report.showReportAccessories(fair, "test.txt");
 
         StandByPriceReport priceReport = new StandByPriceReport();
         priceReport.showStandsByPrice(fair);

@@ -20,7 +20,6 @@ public class AccessoryReport {
                 System.out.println(reportLine);
                 fileWriter.write(reportLine + "\n");
             }
-
             System.out.println("Reporte de accesorios guardado en '" + fileName + "'");
         } catch (IOException e) {
             e.printStackTrace();
