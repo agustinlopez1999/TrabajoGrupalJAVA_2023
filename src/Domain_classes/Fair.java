@@ -95,6 +95,12 @@ public class Fair{
         System.out.println("Stands average price: $"+sum/i);
     }
 
+    public ArrayList GetSortedByPrice(){
+        StandPriceComparator priceComparator = new StandPriceComparator();
+        ArrayList<Stand> aux = new ArrayList<>(stands);
+        aux.sort(priceComparator);
+        return aux;
+    }
 
     public TreeMap loadAccessories(){
         AccessoriesComparator accessoriesComparator = new AccessoriesComparator();
