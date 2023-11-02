@@ -9,11 +9,10 @@ import java.util.ArrayList;
 public class StandByPriceReport {
     public StandByPriceReport() {
     }
-    public void showStandsByPrice() {
+    public void showStandsByPrice(Fair fair) {
         ArrayList<Stand> standsByPrice;
         int i=0;
         float sum=0;
-        Fair fair = null;
         standsByPrice=fair.GetSortedByPrice();
         System.out.println("STANDS BY PRICE");
         for (Stand aux : standsByPrice) {

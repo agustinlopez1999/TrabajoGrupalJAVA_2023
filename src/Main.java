@@ -1,6 +1,6 @@
 import Domain_classes.*;
-import Reports.*;
-
+import Reports.AccessoryReport;
+import Reports.StandByPriceReport;
 public class Main {
     public static void main(String[] args) {
         Fair fair = new Fair();
@@ -13,11 +13,13 @@ public class Main {
         }
 
         //fair.showClientStands(44948204);
-        }
-        StandByPriceReport standsReport = new StandByPriceReport();
+        //StandByPriceReport standsReport = new StandByPriceReport();
 
-        stands
-        //AccessoryReport a = new AccessoryReport();
-        //a.showReportAccessories(fair);
+        //stands
+        AccessoryReport report = new AccessoryReport();
+        report.showReportAccessories(fair,"test.txt");
+
+        StandByPriceReport priceReport = new StandByPriceReport();
+        priceReport.showStandsByPrice(fair);
     }
 }
