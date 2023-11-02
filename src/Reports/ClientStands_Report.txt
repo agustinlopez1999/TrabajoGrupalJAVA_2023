@@ -1,2 +1,30 @@
-Client [4950694] Stand/s:
-Client doesn't have any Stands
+Client [42044284] Stand/s:Stand details:
+Code: AAAAA1
+Surface: 1000.0
+Price per m²: 300.0
+Accessories:
+ID: 4930, Description: Chair, Price: 120.0
+ID: 9201, Description: Table, Price: 350.0
+Client details:
+Client ID: 42044284, Name: Agustin
+Luminaries: 5
+Stand details:
+Code: BAAAA1
+Surface: 1000.0
+Price per m²: 40.0
+Accessories:
+ID: 30, Description: Led Lights, Price: 120.0
+ID: 201, Description: Tv, Price: 350.0
+Client details:
+Client ID: 42044284, Name: Agustin
+Luminaries: 5
+Stand details:
+Code: JDILK4
+Surface: 1000.0
+Price per m²: 40.0
+Accessories:
+ID: 4930, Description: Chair, Price: 120.0
+ID: 9201, Description: Table, Price: 350.0
+Client details:
+Client ID: 42044284, Name: Agustin
+Luminaries: 5
