@@ -109,13 +109,13 @@
             <luminaries>5</luminaries>
             <accessories>
                 <Accessory>
-                    <id>4930</id>
-                    <description>Chair</description>
+                    <id>30</id>
+                    <description>Led Lights</description>
                     <price>120</price>
                 </Accessory>
                 <Accessory>
-                    <id>9201</id>
-                    <description>Table</description>
+                    <id>201</id>
+                    <description>Tv</description>
                     <price>350</price>
                 </Accessory>
             </accessories>
