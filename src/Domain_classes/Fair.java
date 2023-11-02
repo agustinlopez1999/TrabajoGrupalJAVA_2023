@@ -58,42 +58,12 @@ public class Fair{
         }
     }
 
-    public void showClientStands(int _codeNumber){
-        boolean flag = false;
-        System.out.println("Client ["+_codeNumber+"] Stand/s:");
-        for(Stand stand : stands){
-            if(stand.getStandClient().getNumber() == _codeNumber){
-                flag = true;
-                System.out.println(stand);
-                System.out.println("");
-            }
-        }
-        if(!flag)
-            System.out.println("NO STANDS REGISTERED");
-    }
-
     public void printStandsDetails() {
         for (Stand stand : stands) {
             System.out.println(stand.toString());
             System.out.println("----------------------------------------");
         }
     }
-    /*
-    public void showStandsByPrice() {
-        StandPriceComparator priceComparator = new StandPriceComparator();
-        // Crear un nuevo ArrayList e inicializarlo con los elementos del TreeSet
-        ArrayList<Stand> standsByPrice = new ArrayList<>(stands);
-        int i=0;
-        float sum=0;
-        standsByPrice.sort(priceComparator);
-        System.out.println("STANDS BY PRICE");
-        for (Stand aux : standsByPrice) {
-            i++;
-            sum+=aux.finalValue();
-            System.out.println("code: " + aux.getCode() + " final price: " + aux.finalValue());
-        }
-        System.out.println("Stands average price: $"+sum/i);
-    }*/
 
     public ArrayList<Stand> GetSortedByPrice(){
         StandPriceComparator priceComparator = new StandPriceComparator();
@@ -116,6 +86,14 @@ public class Fair{
             }
         }
         return tMap;
+    }
+
+    public TreeSet<Stand> getClientStands(TreeSet<Stand> aux, int _codeNumber){
+        for(Stand stand: stands){
+            if(stand.getStandClient().getNumber() == _codeNumber)
+                aux.add(stand);
+        }
+        return aux;
     }
 
 }

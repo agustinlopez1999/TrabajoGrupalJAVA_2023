@@ -15,7 +15,6 @@ public class StandByPriceReport {
         float sum=0;
         standsByPrice=fair.GetSortedByPrice();
         try(FileWriter fileWriter = new FileWriter(fileName, false)){
-            System.out.println("STANDS BY PRICE");
             for (Stand aux : standsByPrice) {
                 i++;
                 sum+=aux.finalValue();
