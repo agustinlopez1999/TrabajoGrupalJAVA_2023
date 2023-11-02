@@ -1,13 +1,23 @@
 package GUI;
-import java.util.*;
 
+/**
+ * The Menu class provides methods to display various menus for the Fair System.
+ */
 public class Menu {
-    public void Space(){
+
+    /**
+     * Displays space for separation in the console.
+     */
+    public void Space() {
         System.out.println("\n");
         System.out.println("===================================================");
         System.out.println("\n");
     }
-    public void showMenu(){
+
+    /**
+     * Displays the main menu of the Fair System.
+     */
+    public void showMenu() {
         Space();
         System.out.println("[ FAIR SYSTEM MAIN MENU ]\n");
         System.out.println("1- ALL Stands");
@@ -17,23 +27,36 @@ public class Menu {
         System.out.println("5- Exit");
     }
 
-    public void AllStandsMenu(){
+    /**
+     * Displays the menu for showing all stands.
+     */
+    public void AllStandsMenu() {
         Space();
         System.out.println("[ ALL STANDS ]\n");
     }
-    public void ClientStandsMenu(){
+
+    /**
+     * Displays the menu for showing client stands.
+     */
+    public void ClientStandsMenu() {
         Space();
         System.out.println("[ CLIENT STANDS ]\n");
         System.out.println(">Type the Client Code Number: ");
     }
 
-    public void StandsByPriceMenu(){
+    /**
+     * Displays the menu for showing stands by price.
+     */
+    public void StandsByPriceMenu() {
         Space();
         System.out.println("[ STANDS BY PRICE ]\n");
     }
 
-    public void AccesoryListMenu(){
+    /**
+     * Displays the menu for showing the accessory list.
+     */
+    public void AccesoryListMenu() {
         Space();
-        System.out.println("[ ACCESORY LIST ]\n");
+        System.out.println("[ ACCESSORY LIST ]\n");
     }
 }
