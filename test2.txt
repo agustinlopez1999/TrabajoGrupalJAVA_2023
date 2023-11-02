@@ -1,0 +1,6 @@
+code: BAAAA1 final price: 45470.0
+code: JDILK4 final price: 45470.0
+code: MP3LK2 final price: 102504.0
+code: AAAAA1 final price: 305470.0
+
+Stands average price: $124728.5

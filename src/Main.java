@@ -20,6 +20,6 @@ public class Main {
         report.showReportAccessories(fair, "test.txt");
 
         StandByPriceReport priceReport = new StandByPriceReport();
-        priceReport.showStandsByPrice(fair);
+        priceReport.showStandsByPrice(fair, "test2.txt");
     }
 }
