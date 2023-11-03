@@ -8,13 +8,17 @@ import java.io.IOException;
 public class ClientReport {
     public void showClientStands(int _codeNumber, Fair fair, String fileName){
         TreeSet<Stand> aux = new TreeSet<>();
+        String reportCode;
+        String reportNoStands;
         try (FileWriter fileWriter = new FileWriter(fileName, false)){
-            System.out.println("Client ["+_codeNumber+"] Stand/s:");
-            fileWriter.write("Client ["+_codeNumber+"] Stand/s:"); //TRATAR DE NO REPETIR CODIGO
+            reportCode = "Client ["+_codeNumber+"] Stand/s:";
+            System.out.println(reportCode);
+            fileWriter.write(reportCode);
             aux = fair.getClientStands(aux,_codeNumber);
             if(aux.isEmpty()){
-                System.out.println("\nClient doesn't have any Stands");
-                fileWriter.write("\nClient doesn't have any Stands");
+                reportNoStands = "\nClient doesn't have any Stands \n";
+                System.out.println(reportNoStands);
+                fileWriter.write(reportNoStands);
             }
             else{
                 for(Stand stand:aux){
@@ -22,7 +26,7 @@ public class ClientReport {
                     fileWriter.write(stand+"\n");
                 }
             }
-            System.out.println("Reporte de Cliente guardado en '" + fileName + "'");
+            System.out.println("Client report saved in '" + fileName + "'");
         } catch (IOException e){
             e.printStackTrace();
         }

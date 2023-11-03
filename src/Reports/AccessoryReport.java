@@ -13,14 +13,15 @@ public class AccessoryReport {
     public void showReportAccessories(Fair fair, String fileName){
         TreeMap<Accessory,Integer>  tm =  fair.loadAccessories();
         int value;
+        String reportLine;
         try (FileWriter fileWriter = new FileWriter(fileName, false)) {
             for (Accessory aux : tm.keySet()) {
                 value = tm.get(aux);
-                String reportLine = aux + ": " + value;
+                reportLine = aux + ": " + value;
                 System.out.println(reportLine);
                 fileWriter.write(reportLine + "\n");
             }
-            System.out.println("Reporte de accesorios guardado en '" + fileName + "'");
+            System.out.println("Accessories report saved in '" + fileName + "'");
         } catch (IOException e) {
             e.printStackTrace();
         }

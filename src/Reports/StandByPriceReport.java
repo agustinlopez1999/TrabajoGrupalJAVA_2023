@@ -13,16 +13,21 @@ public class StandByPriceReport {
         ArrayList<Stand> standsByPrice;
         int i=0;
         float sum=0;
+        String reportLine;
+        String reportAvarage;
         standsByPrice=fair.GetSortedByPrice();
         try(FileWriter fileWriter = new FileWriter(fileName, false)){
             for (Stand aux : standsByPrice) {
                 i++;
                 sum+=aux.finalValue();
-                System.out.println("code: " + aux.getCode() + " final price: " + aux.finalValue());
-                fileWriter.write("code: " + aux.getCode() + " final price: " + aux.finalValue() + "\n");
+                reportLine = "code: " + aux.getCode() + " final price: " + aux.finalValue();
+                System.out.println(reportLine);
+                fileWriter.write(reportLine + "\n");
             }
-            System.out.println("Stands average price: $"+sum/i);
-            fileWriter.write("\nStands average price: $"+sum/i);
+            reportAvarage = "Stands average price: $"+sum/i;
+            System.out.println(reportAvarage);
+            fileWriter.write("\n" + reportAvarage);
+            System.out.println("The report of the stands ordered by price is saved in '" + fileName + "'");
         } catch (IOException e){
             e.printStackTrace();
         }
