@@ -6,8 +6,16 @@ import Reports.StandByPriceReport;
 
 import java.util.InputMismatchException;
 import java.util.Scanner;
-
+/**
+ * The `Main` class contains the main entry point of the Fair Management System application. It provides a text-based menu
+ * for interacting with the fair data, displaying information about stands, clients, and accessories, and generating reports.
+ */
 public class Main {
+    /**
+     * The main method that initiates the Fair Management System application.
+     *
+     * @param args The command-line arguments (not used in this application).
+     */
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
         int option = 0, _codeNumber;

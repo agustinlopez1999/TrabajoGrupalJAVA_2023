@@ -6,32 +6,31 @@ import org.w3c.dom.Element;
 import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 import org.xml.sax.SAXException;
-
-import java.io.BufferedReader;
 import java.io.IOException;
-import java.io.InputStreamReader;
 import java.net.URL;
 import java.net.URLConnection;
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
 import javax.xml.parsers.ParserConfigurationException;
-import org.w3c.dom.Document;
-import org.w3c.dom.Element;
-import org.w3c.dom.Node;
-import org.w3c.dom.NodeList;
-import org.xml.sax.SAXException;
 import java.util.ArrayList;
 import java.util.TreeSet;
 
-
+/**
+ * The `ClassXML` class is responsible for loading fair data from an XML source, processing the XML content,
+ * and populating a `Fair` object with the relevant data. Additionally, it handles error checking and reporting.
+ */
 public class ClassXML {
-
+    /**
+     * Loads fair data from an XML source and populates a `Fair` object with the parsed data.
+     *
+     * @return A `Fair` object containing stands and associated data.
+     * @throws RuntimeException If an error occurs during XML parsing or if data is missing or invalid.
+     */
     public static Fair loadFairXML() {
         Fair fair = new Fair();
         TreeSet<Stand> stands = new TreeSet<>();
         ArrayList<String> errors = new ArrayList<>();
         try {
-            // leemos el XML a traves del xml de github para evitar rutas totales.
             String url = "https://raw.githubusercontent.com/agustinlopez1999/TrabajoGrupalJAVA_2023/master/src/XML/data.xml";
             URLConnection connection = new URL(url).openConnection();
             DocumentBuilderFactory dbFactory = DocumentBuilderFactory.newInstance();
@@ -118,7 +117,13 @@ public class ClassXML {
             return ""; // si no existe
         }
     }
-
+    /**
+     * Parses the text content of an XML element and converts it to an integer.
+     *
+     * @param element  The XML element containing the text content to be parsed.
+     * @param tagName  The name of the XML tag to retrieve the content from.
+     * @return An integer value parsed from the XML element, or 0 if no valid content is found.
+     */
     private static int parseIntElement(Element element, String tagName) {
         NodeList nodeList = element.getElementsByTagName(tagName);
         if (nodeList.getLength() > 0) {
@@ -129,7 +134,13 @@ public class ClassXML {
         }
         return 0;
     }
-
+    /**
+     * Parses the text content of an XML element and converts it to a floating-point number.
+     *
+     * @param element  The XML element containing the text content to be parsed.
+     * @param tagName  The name of the XML tag to retrieve the content from.
+     * @return A float value parsed from the XML element, or 0.0f if no valid content is found.
+     */
     private static float parseFloatElement(Element element, String tagName) {
         NodeList nodeList = element.getElementsByTagName(tagName);
         if (nodeList.getLength() > 0) {

@@ -8,27 +8,56 @@ import Comparator.AccessoriesComparator;
 import Comparator.StandPriceComparator;
 import XML.*;
 
+
+/**
+ * The Fair class represents a fair that includes a collection of stands.
+ * It provides various methods for managing and displaying information about the stands.
+ */
+
 public class Fair{
     private TreeSet<Stand> stands;
+
+    /**
+     * Constructs a Fair object with an empty collection of stands.
+     */
     public Fair() {
         this.stands = new TreeSet<>();
     }
 
+    /**
+     * Retrieves the collection of stands.
+     *
+     * @return The collection of stands.
+     */
     private TreeSet<Stand> getStands() {
         return stands;
     }
-
+    /**
+     * Sets the collection of stands.
+     *
+     * @param stands The new collection of stands.
+     */
     public void setStands(TreeSet<Stand> stands) {
         this.stands = stands;
     }
+    /**
+     * Loads stands from an XML source.
+     */
     public void loadStandsFromXML() {
         this.stands = ClassXML.loadFairXML().getStands();
     }
+    /**
+     * Checks if the collection of stands is empty.
+     *
+     * @return true if the collection is empty, false otherwise.
+     */
     public boolean Empty(){
         return stands==null;
     }
 
-    
+    /**
+     * Displays details of all stands in the fair.
+     */
     public void showAllStands(){
         for (Stand stand : stands){
             System.out.println("\t(Stand Details:)");
@@ -57,21 +86,31 @@ public class Fair{
             System.out.println();
         }
     }
-
+    /**
+     * Prints details of all stands in the fair.
+     */
     public void printStandsDetails() {
         for (Stand stand : stands) {
             System.out.println(stand.toString());
             System.out.println("----------------------------------------");
         }
     }
-
+    /**
+     * Retrieves an ArrayList of stands sorted by price.
+     *
+     * @return An ArrayList of stands sorted by price.
+     */
     public ArrayList<Stand> GetSortedByPrice(){
         StandPriceComparator priceComparator = new StandPriceComparator();
         ArrayList<Stand> aux = new ArrayList<>(stands);
         aux.sort(priceComparator);
         return aux;
     }
-
+    /**
+     * Loads accessories and their counts into a TreeMap.
+     *
+     * @return A TreeMap containing accessories and their counts.
+     */
     public TreeMap loadAccessories(){
         AccessoriesComparator accessoriesComparator = new AccessoriesComparator();
         TreeMap<Accessory, Integer> tMap = new TreeMap<Accessory, Integer>(accessoriesComparator);
@@ -87,7 +126,13 @@ public class Fair{
         }
         return tMap;
     }
-
+    /**
+     * Retrieves stands associated with a specific client.
+     *
+     * @param aux         A TreeSet to store the client's stands.
+     * @param _codeNumber The client number.
+     * @return A TreeSet of stands associated with the client.
+     */
     public TreeSet<Stand> getClientStands(TreeSet<Stand> aux, int _codeNumber){
         for(Stand stand: stands){
             if(stand.getStandClient().getNumber() == _codeNumber)
