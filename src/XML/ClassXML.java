@@ -57,12 +57,12 @@ public class ClassXML {
                         if (type.isEmpty())
                             errors.add("The stand with the: " + code + " doesn´t have a type or is invalid");
                         if (surface <= 0) //si esta vacio?
-                            errors.add("The stand with the code " + code + " has a impossible value to surface");
+                            errors.add("The stand with the code " + code + " has a invalid value to surface");
                         if (m2price <= 0)
-                            errors.add("The stand with the code " + code + " has a impossible value to square meters price");
+                            errors.add("The stand with the code " + code + " has a invalid value to square meters price");
                         if (type.equals("Inside")) {
                             if(luminaries < 0)
-                                errors.add("The Inside stand with the code " + code + " has a impossible value to luminaries");
+                                errors.add("The Inside stand with the code " + code + " has a invalid value to luminaries");
                         }
                         continue;
                     }
