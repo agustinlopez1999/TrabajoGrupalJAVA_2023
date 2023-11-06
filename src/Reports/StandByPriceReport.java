@@ -31,7 +31,7 @@ public class StandByPriceReport {
             for (Stand aux : standsByPrice) {
                 i++;
                 sum+=aux.finalValue();
-                reportLine = "code: " + aux.getCode() + " final price: " + aux.finalValue();
+                reportLine = "code: " + aux.getCode() + " final price: $" + aux.finalValue();
                 System.out.println(reportLine);
                 fileWriter.write(reportLine + "\n");
             }
