@@ -1,5 +1,5 @@
-Accessory{id =4930, description ='Chair', price =120.0}: 3
-Accessory{id =30, description ='Led Lights', price =120.0}: 1
-Accessory{id =4935, description ='Small Chair', price =90.0}: 1
-Accessory{id =9201, description ='Table', price =350.0}: 3
-Accessory{id =201, description ='Tv', price =350.0}: 1
+Accessory{id=4930, description='Chair', price=120.0}: 3
+Accessory{id=30, description='Led Lights', price=120.0}: 1
+Accessory{id=4935, description='Small Chair', price=90.0}: 1
+Accessory{id=9201, description='Table', price=350.0}: 3
+Accessory{id=201, description='Tv', price=350.0}: 1

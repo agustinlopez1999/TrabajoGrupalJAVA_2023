@@ -11,8 +11,8 @@ import java.util.TreeMap;
  */
 public class AccessoryReport {
     AccessoriesComparator accessoriesComparator = new AccessoriesComparator();
-    TreeMap<Accessory, Integer> hm = new TreeMap<Accessory, Integer>(accessoriesComparator);
-    /**
+    TreeMap<Accessory, Integer> tm = new TreeMap<>(accessoriesComparator);
+     /**
      * Generates and displays an accessories report based on the data provided by a `Fair` instance.
      * The report includes the count of each accessory type and is saved to a specified file.
      *
@@ -20,7 +20,7 @@ public class AccessoryReport {
      * @param fileName The name of the file where the report will be saved.
      */
     public void showReportAccessories(Fair fair, String fileName){
-        TreeMap<Accessory,Integer>  tm =  fair.loadAccessories();
+        tm =  fair.loadAccessories();
         int value;
         String reportLine;
         try (FileWriter fileWriter = new FileWriter(fileName, false)) {

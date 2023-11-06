@@ -1,6 +1,5 @@
 package Reports;
 
-import Comparator.StandPriceComparator;
 import Domain_classes.Fair;
 import Domain_classes.Stand;
 import java.io.FileWriter;

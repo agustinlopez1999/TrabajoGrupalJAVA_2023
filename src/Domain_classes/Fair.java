@@ -113,7 +113,7 @@ public class Fair{
      */
     public TreeMap loadAccessories(){
         AccessoriesComparator accessoriesComparator = new AccessoriesComparator();
-        TreeMap<Accessory, Integer> tMap = new TreeMap<Accessory, Integer>(accessoriesComparator);
+        TreeMap<Accessory, Integer> tMap = new TreeMap<>(accessoriesComparator);
         Integer count;
         for (Stand stand: stands) {
             for (Accessory accessory : stand.getAccesories()) {
