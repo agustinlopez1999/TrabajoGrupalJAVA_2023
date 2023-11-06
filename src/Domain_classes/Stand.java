@@ -21,7 +21,7 @@ public class Stand implements Comparable<Stand>{
     /**
      * A list of accessories associated with the stand.
      */
-    private ArrayList<Accessory> accesories = new ArrayList<Accessory>();
+    private ArrayList<Accessory> accesories = new ArrayList<>();
     /**
      * The client associated with the stand.
      */
@@ -48,28 +48,56 @@ public class Stand implements Comparable<Stand>{
         this.standClient = standClient;
     }
 
-    //setters
+    /**
+     * Sets the code of the stand.
+     *
+     * @param code The unique code for the stand.
+     */
     public void setCode(String code) {
         this.code = code;
     }
 
+    /**
+     * Sets the surface of the stand.
+     *
+     * @param surface The surface area of the stand.
+     */
     public void setSurface(float surface) {
         this.surface = surface;
     }
 
+    /**
+     * Sets the meters square price of the stand.
+     *
+     * @param m2price The price per square meter.
+     */
     public void setM2price(float m2price) {
         this.m2price = m2price;
     }
 
-    //getters
+    /**
+     * Retrieves the code of the stand.
+     *
+     * @return The unique code of the stand.
+     */
     public String getCode() {
         return code;
     }
 
+    /**
+     * Retrieves the surface of the stand.
+     *
+     * @return The surface the stand.
+     */
     public float getSurface() {
         return surface;
     }
 
+    /**
+     * Retrieves meters square price of the stand.
+     *
+     * @return The meters square price of the stand.
+     */
     public float getM2price() {
         return m2price;
     }
