@@ -47,77 +47,6 @@ public class Stand implements Comparable<Stand>{
         this.accesories = accessories;
         this.standClient = standClient;
     }
-
-    /**
-     * Sets the code of the stand.
-     *
-     * @param code The unique code for the stand.
-     */
-    public void setCode(String code) {
-        this.code = code;
-    }
-
-    /**
-     * Sets the surface of the stand.
-     *
-     * @param surface The surface area of the stand.
-     */
-    public void setSurface(float surface) {
-        this.surface = surface;
-    }
-
-    /**
-     * Sets the meters square price of the stand.
-     *
-     * @param m2price The price per square meter.
-     */
-    public void setM2price(float m2price) {
-        this.m2price = m2price;
-    }
-
-    /**
-     * Retrieves the code of the stand.
-     *
-     * @return The unique code of the stand.
-     */
-    public String getCode() {
-        return code;
-    }
-
-    /**
-     * Retrieves the surface of the stand.
-     *
-     * @return The surface the stand.
-     */
-    public float getSurface() {
-        return surface;
-    }
-
-    /**
-     * Retrieves meters square price of the stand.
-     *
-     * @return The meters square price of the stand.
-     */
-    public float getM2price() {
-        return m2price;
-    }
-    /**
-     * Calculates and returns the final value of the stand.
-     * The final value depends on the stand type (Inside or Outside) and accessories.
-     *
-     * @return The final value of the stand.
-     */
-    public float finalValue(){
-        return 0;
-    }
-    /**
-     * Adds an accessory to the list of accessories for this stand.
-     *
-     * @param _accessory The accessory to be added.
-     */
-    public void addAccessory(Accessory _accessory){
-        accesories.add(_accessory);
-    }
     /**
      * Retrieves the client associated with the stand.
      *
@@ -147,6 +76,76 @@ public class Stand implements Comparable<Stand>{
         for(Accessory aux:accesories)
             total++;
         return total;
+    }
+
+    /**
+     * Retrieves the code of the stand.
+     *
+     * @return The unique code of the stand.
+     */
+    public String getCode() {
+        return code;
+    }
+
+    /**
+     * Retrieves the surface of the stand.
+     *
+     * @return The surface the stand.
+     */
+    public float getSurface() {
+        return surface;
+    }
+
+    /**
+     * Retrieves meters square price of the stand.
+     *
+     * @return The meters square price of the stand.
+     */
+    public float getM2price() {
+        return m2price;
+    }
+    /**
+     * Sets the code of the stand.
+     *
+     * @param code The unique code for the stand.
+     */
+    public void setCode(String code) {
+        this.code = code;
+    }
+
+    /**
+     * Sets the surface of the stand.
+     *
+     * @param surface The surface area of the stand.
+     */
+    public void setSurface(float surface) {
+        this.surface = surface;
+    }
+
+    /**
+     * Sets the meters square price of the stand.
+     *
+     * @param m2price The price per square meter.
+     */
+    public void setM2price(float m2price) {
+        this.m2price = m2price;
+    }
+    /**
+     * Calculates and returns the final value of the stand.
+     * The final value depends on the stand type (Inside or Outside) and accessories.
+     *
+     * @return The final value of the stand.
+     */
+    public float finalValue(){
+        return 0;
+    }
+    /**
+     * Adds an accessory to the list of accessories for this stand.
+     *
+     * @param _accessory The accessory to be added.
+     */
+    public void addAccessory(Accessory _accessory){
+        accesories.add(_accessory);
     }
     /**
      * Retrieves the list of accessories associated with the stand.

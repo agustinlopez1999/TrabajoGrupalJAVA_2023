@@ -1,0 +1,82 @@
+<html>
+<head>
+<title>Menu.java</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<style type="text/css">
+.s0 { color: #cc7832;}
+.s1 { color: #a9b7c6;}
+.s2 { color: #629755; font-style: italic;}
+.s3 { color: #6a8759;}
+</style>
+</head>
+<body bgcolor="#2b2b2b">
+<table CELLSPACING=0 CELLPADDING=5 COLS=1 WIDTH="100%" BGCOLOR="#606060" >
+<tr><td><center>
+<font face="Arial, Helvetica" color="#000000">
+Menu.java</font>
+</center></td></tr></table>
+<pre><span class="s0">package </span><span class="s1">GUI</span><span class="s0">;</span>
+
+<span class="s2">/**</span>
+ <span class="s2">* The Menu class provides methods to display various menus for the Fair System.</span>
+ <span class="s2">*/</span>
+<span class="s0">public class </span><span class="s1">Menu {</span>
+
+    <span class="s2">/**</span>
+     <span class="s2">* Displays space for separation in the console.</span>
+     <span class="s2">*/</span>
+    <span class="s0">public void </span><span class="s1">Space() {</span>
+        <span class="s1">System.out.println(</span><span class="s3">&quot;</span><span class="s0">\n</span><span class="s3">&quot;</span><span class="s1">)</span><span class="s0">;</span>
+        <span class="s1">System.out.println(</span><span class="s3">&quot;===================================================&quot;</span><span class="s1">)</span><span class="s0">;</span>
+        <span class="s1">System.out.println(</span><span class="s3">&quot;</span><span class="s0">\n</span><span class="s3">&quot;</span><span class="s1">)</span><span class="s0">;</span>
+    <span class="s1">}</span>
+
+    <span class="s2">/**</span>
+     <span class="s2">* Displays the main menu of the Fair System.</span>
+     <span class="s2">*/</span>
+    <span class="s0">public void </span><span class="s1">showMenu() {</span>
+        <span class="s1">Space()</span><span class="s0">;</span>
+        <span class="s1">System.out.println(</span><span class="s3">&quot;[ FAIR SYSTEM MAIN MENU ]</span><span class="s0">\n</span><span class="s3">&quot;</span><span class="s1">)</span><span class="s0">;</span>
+        <span class="s1">System.out.println(</span><span class="s3">&quot;1- ALL Stands&quot;</span><span class="s1">)</span><span class="s0">;</span>
+        <span class="s1">System.out.println(</span><span class="s3">&quot;2- Client Stands&quot;</span><span class="s1">)</span><span class="s0">;</span>
+        <span class="s1">System.out.println(</span><span class="s3">&quot;3- Stands by Price&quot;</span><span class="s1">)</span><span class="s0">;</span>
+        <span class="s1">System.out.println(</span><span class="s3">&quot;4- Accessory List&quot;</span><span class="s1">)</span><span class="s0">;</span>
+        <span class="s1">System.out.println(</span><span class="s3">&quot;5- Exit&quot;</span><span class="s1">)</span><span class="s0">;</span>
+    <span class="s1">}</span>
+
+    <span class="s2">/**</span>
+     <span class="s2">* Displays the menu for showing all stands.</span>
+     <span class="s2">*/</span>
+    <span class="s0">public void </span><span class="s1">AllStandsMenu() {</span>
+        <span class="s1">Space()</span><span class="s0">;</span>
+        <span class="s1">System.out.println(</span><span class="s3">&quot;[ ALL STANDS ]</span><span class="s0">\n</span><span class="s3">&quot;</span><span class="s1">)</span><span class="s0">;</span>
+    <span class="s1">}</span>
+
+    <span class="s2">/**</span>
+     <span class="s2">* Displays the menu for showing client stands.</span>
+     <span class="s2">*/</span>
+    <span class="s0">public void </span><span class="s1">ClientStandsMenu() {</span>
+        <span class="s1">Space()</span><span class="s0">;</span>
+        <span class="s1">System.out.println(</span><span class="s3">&quot;[ CLIENT STANDS ]</span><span class="s0">\n</span><span class="s3">&quot;</span><span class="s1">)</span><span class="s0">;</span>
+        <span class="s1">System.out.println(</span><span class="s3">&quot;&gt;Type the Client Code Number: &quot;</span><span class="s1">)</span><span class="s0">;</span>
+    <span class="s1">}</span>
+
+    <span class="s2">/**</span>
+     <span class="s2">* Displays the menu for showing stands by price.</span>
+     <span class="s2">*/</span>
+    <span class="s0">public void </span><span class="s1">StandsByPriceMenu() {</span>
+        <span class="s1">Space()</span><span class="s0">;</span>
+        <span class="s1">System.out.println(</span><span class="s3">&quot;[ STANDS BY PRICE ]</span><span class="s0">\n</span><span class="s3">&quot;</span><span class="s1">)</span><span class="s0">;</span>
+    <span class="s1">}</span>
+
+    <span class="s2">/**</span>
+     <span class="s2">* Displays the menu for showing the accessory list.</span>
+     <span class="s2">*/</span>
+    <span class="s0">public void </span><span class="s1">AccesoryListMenu() {</span>
+        <span class="s1">Space()</span><span class="s0">;</span>
+        <span class="s1">System.out.println(</span><span class="s3">&quot;[ ACCESSORY LIST ]</span><span class="s0">\n</span><span class="s3">&quot;</span><span class="s1">)</span><span class="s0">;</span>
+    <span class="s1">}</span>
+<span class="s1">}</span>
+</pre>
+</body>
+</html>

@@ -1,0 +1,88 @@
+<html>
+<head>
+<title>Main.java</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<style type="text/css">
+.s0 { color: #cc7832;}
+.s1 { color: #a9b7c6;}
+.s2 { color: #629755; font-style: italic;}
+.s3 { color: #629755; font-weight: bold; font-style: italic;}
+.s4 { color: #6897bb;}
+.s5 { color: #6a8759;}
+</style>
+</head>
+<body bgcolor="#2b2b2b">
+<table CELLSPACING=0 CELLPADDING=5 COLS=1 WIDTH="100%" BGCOLOR="#606060" >
+<tr><td><center>
+<font face="Arial, Helvetica" color="#000000">
+Main.java</font>
+</center></td></tr></table>
+<pre><span class="s0">import </span><span class="s1">Domain_classes.*</span><span class="s0">;</span>
+<span class="s0">import </span><span class="s1">GUI.Menu</span><span class="s0">;</span>
+<span class="s0">import </span><span class="s1">Reports.AccessoryReport</span><span class="s0">;</span>
+<span class="s0">import </span><span class="s1">Reports.ClientReport</span><span class="s0">;</span>
+<span class="s0">import </span><span class="s1">Reports.StandByPriceReport</span><span class="s0">;</span>
+
+<span class="s0">import </span><span class="s1">java.util.InputMismatchException</span><span class="s0">;</span>
+<span class="s0">import </span><span class="s1">java.util.Scanner</span><span class="s0">;</span>
+<span class="s2">/**</span>
+ <span class="s2">* The `Main` class contains the main entry point of the Fair Management System application. It provides a text-based menu</span>
+ <span class="s2">* for interacting with the fair data, displaying information about stands, clients, and accessories, and generating reports.</span>
+ <span class="s2">*/</span>
+<span class="s0">public class </span><span class="s1">Main {</span>
+    <span class="s2">/**</span>
+     <span class="s2">* The main method that initiates the Fair Management System application.</span>
+     <span class="s2">*</span>
+     <span class="s2">* </span><span class="s3">@param </span><span class="s2">args The command-line arguments (not used in this application).</span>
+     <span class="s2">*/</span>
+    <span class="s0">public static void </span><span class="s1">main(String[] args) {</span>
+        <span class="s1">Scanner scanner = </span><span class="s0">new </span><span class="s1">Scanner(System.in)</span><span class="s0">;</span>
+        <span class="s0">int </span><span class="s1">option = </span><span class="s4">0</span><span class="s0">, </span><span class="s1">_codeNumber</span><span class="s0">;</span>
+        <span class="s1">Menu menu = </span><span class="s0">new </span><span class="s1">Menu()</span><span class="s0">;</span>
+        <span class="s1">Fair fair = </span><span class="s0">new </span><span class="s1">Fair()</span><span class="s0">;</span>
+        <span class="s1">ClientReport client_report = </span><span class="s0">new </span><span class="s1">ClientReport()</span><span class="s0">;</span>
+        <span class="s1">StandByPriceReport priceReport = </span><span class="s0">new </span><span class="s1">StandByPriceReport()</span><span class="s0">;</span>
+        <span class="s1">AccessoryReport report = </span><span class="s0">new </span><span class="s1">AccessoryReport()</span><span class="s0">;</span>
+        <span class="s1">fair.loadStandsFromXML()</span><span class="s0">;</span>
+        <span class="s0">do </span><span class="s1">{</span>
+            <span class="s1">menu.showMenu()</span><span class="s0">;</span>
+            <span class="s0">try</span><span class="s1">{</span>
+                <span class="s1">option = scanner.nextInt()</span><span class="s0">;</span>
+                <span class="s1">scanner.nextLine()</span><span class="s0">;</span>
+                <span class="s0">switch </span><span class="s1">(option) {</span>
+                    <span class="s0">case </span><span class="s4">1</span><span class="s1">:</span>
+                        <span class="s1">menu.AllStandsMenu()</span><span class="s0">;</span>
+                        <span class="s1">fair.showAllStands()</span><span class="s0">;</span>
+                        <span class="s0">break;</span>
+                    <span class="s0">case </span><span class="s4">2</span><span class="s1">:</span>
+                        <span class="s1">menu.ClientStandsMenu()</span><span class="s0">;</span>
+                        <span class="s1">_codeNumber = scanner.nextInt()</span><span class="s0">;</span>
+                        <span class="s1">scanner.nextLine()</span><span class="s0">;</span>
+                        <span class="s1">client_report.showClientStands(_codeNumber</span><span class="s0">, </span><span class="s1">fair</span><span class="s0">, </span><span class="s5">&quot;./src/Reports/ClientStands_Report.txt&quot;</span><span class="s1">)</span><span class="s0">;</span>
+                        <span class="s0">break;</span>
+                    <span class="s0">case </span><span class="s4">3</span><span class="s1">:</span>
+                        <span class="s1">menu.StandsByPriceMenu()</span><span class="s0">;</span>
+                        <span class="s1">priceReport.showStandsByPrice(fair</span><span class="s0">, </span><span class="s5">&quot;./src/Reports/StandPrice_Report.txt&quot;</span><span class="s1">)</span><span class="s0">;</span>
+                        <span class="s0">break;</span>
+                    <span class="s0">case </span><span class="s4">4</span><span class="s1">:</span>
+                        <span class="s1">menu.AccesoryListMenu()</span><span class="s0">;</span>
+                        <span class="s1">report.showReportAccessories(fair</span><span class="s0">, </span><span class="s5">&quot;./src/Reports/Accesories_Report.txt&quot;</span><span class="s1">)</span><span class="s0">;</span>
+                        <span class="s0">break;</span>
+                    <span class="s0">case </span><span class="s4">5</span><span class="s1">:</span>
+                        <span class="s1">System.out.println(</span><span class="s5">&quot;Closing session...&quot;</span><span class="s1">)</span><span class="s0">;</span>
+                        <span class="s0">break;</span>
+                    <span class="s0">default</span><span class="s1">:</span>
+                        <span class="s1">System.out.println(</span><span class="s5">&quot;</span><span class="s0">\n</span><span class="s5">[ INVALID OPTION! ]&quot;</span><span class="s1">)</span><span class="s0">;</span>
+                        <span class="s0">break;</span>
+                <span class="s1">}</span>
+            <span class="s1">}</span><span class="s0">catch </span><span class="s1">(InputMismatchException e) {</span>
+                <span class="s1">System.out.println(</span><span class="s5">&quot;</span><span class="s0">\n</span><span class="s5">[ Invalid input! Please enter a valid option. ]&quot;</span><span class="s1">)</span><span class="s0">;</span>
+                <span class="s1">scanner.next()</span><span class="s0">;</span>
+            <span class="s1">}</span>
+        <span class="s1">} </span><span class="s0">while </span><span class="s1">(option != </span><span class="s4">5</span><span class="s1">)</span><span class="s0">;</span>
+        <span class="s1">scanner.close()</span><span class="s0">;</span>
+    <span class="s1">}</span>
+<span class="s1">}</span>
+</pre>
+</body>
+</html>

@@ -26,7 +26,7 @@ public class StandByPriceReport {
         float sum=0;
         String reportLine;
         String reportAvarage;
-        standsByPrice=fair.GetSortedByPrice();
+        standsByPrice=fair.getSortedByPrice();
         try(FileWriter fileWriter = new FileWriter(fileName, false)){
             for (Stand aux : standsByPrice) {
                 i++;

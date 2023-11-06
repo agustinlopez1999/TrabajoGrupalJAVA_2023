@@ -1,0 +1,176 @@
+<html>
+<head>
+<title>ClassXML.java</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<style type="text/css">
+.s0 { color: #cc7832;}
+.s1 { color: #a9b7c6;}
+.s2 { color: #629755; font-style: italic;}
+.s3 { color: #629755; font-weight: bold; font-style: italic;}
+.s4 { color: #6a8759;}
+.s5 { color: #6897bb;}
+.s6 { color: #808080;}
+</style>
+</head>
+<body bgcolor="#2b2b2b">
+<table CELLSPACING=0 CELLPADDING=5 COLS=1 WIDTH="100%" BGCOLOR="#606060" >
+<tr><td><center>
+<font face="Arial, Helvetica" color="#000000">
+ClassXML.java</font>
+</center></td></tr></table>
+<pre><span class="s0">package </span><span class="s1">XML</span><span class="s0">;</span>
+
+<span class="s0">import </span><span class="s1">Domain_classes.*</span><span class="s0">;</span>
+<span class="s0">import </span><span class="s1">org.w3c.dom.Document</span><span class="s0">;</span>
+<span class="s0">import </span><span class="s1">org.w3c.dom.Element</span><span class="s0">;</span>
+<span class="s0">import </span><span class="s1">org.w3c.dom.Node</span><span class="s0">;</span>
+<span class="s0">import </span><span class="s1">org.w3c.dom.NodeList</span><span class="s0">;</span>
+<span class="s0">import </span><span class="s1">org.xml.sax.SAXException</span><span class="s0">;</span>
+<span class="s0">import </span><span class="s1">java.io.IOException</span><span class="s0">;</span>
+<span class="s0">import </span><span class="s1">java.net.URL</span><span class="s0">;</span>
+<span class="s0">import </span><span class="s1">java.net.URLConnection</span><span class="s0">;</span>
+<span class="s0">import </span><span class="s1">javax.xml.parsers.DocumentBuilder</span><span class="s0">;</span>
+<span class="s0">import </span><span class="s1">javax.xml.parsers.DocumentBuilderFactory</span><span class="s0">;</span>
+<span class="s0">import </span><span class="s1">javax.xml.parsers.ParserConfigurationException</span><span class="s0">;</span>
+<span class="s0">import </span><span class="s1">java.util.ArrayList</span><span class="s0">;</span>
+<span class="s0">import </span><span class="s1">java.util.TreeSet</span><span class="s0">;</span>
+
+<span class="s2">/**</span>
+ <span class="s2">* The `ClassXML` class is responsible for loading fair data from an XML source, processing the XML content,</span>
+ <span class="s2">* and populating a `Fair` object with the relevant data. Additionally, it handles error checking and reporting.</span>
+ <span class="s2">*/</span>
+<span class="s0">public class </span><span class="s1">ClassXML {</span>
+    <span class="s2">/**</span>
+     <span class="s2">* Loads fair data from an XML source and populates a `Fair` object with the parsed data.</span>
+     <span class="s2">*</span>
+     <span class="s2">* </span><span class="s3">@return </span><span class="s2">A `Fair` object containing stands and associated data.</span>
+     <span class="s2">* </span><span class="s3">@throws </span><span class="s2">RuntimeException If an error occurs during XML parsing or if data is missing or invalid.</span>
+     <span class="s2">*/</span>
+    <span class="s0">public static </span><span class="s1">Fair loadFairXML() {</span>
+        <span class="s1">Fair fair = </span><span class="s0">new </span><span class="s1">Fair()</span><span class="s0">;</span>
+        <span class="s1">TreeSet&lt;Stand&gt; stands = </span><span class="s0">new </span><span class="s1">TreeSet&lt;&gt;()</span><span class="s0">;</span>
+        <span class="s1">ArrayList&lt;String&gt; errors = </span><span class="s0">new </span><span class="s1">ArrayList&lt;&gt;()</span><span class="s0">;</span>
+        <span class="s0">try </span><span class="s1">{</span>
+            <span class="s1">String url = </span><span class="s4">&quot;https://raw.githubusercontent.com/agustinlopez1999/TrabajoGrupalJAVA_2023/master/src/XML/data.xml&quot;</span><span class="s0">;</span>
+            <span class="s1">URLConnection connection = </span><span class="s0">new </span><span class="s1">URL(url).openConnection()</span><span class="s0">;</span>
+            <span class="s1">DocumentBuilderFactory dbFactory = DocumentBuilderFactory.newInstance()</span><span class="s0">;</span>
+            <span class="s1">DocumentBuilder dBuilder = dbFactory.newDocumentBuilder()</span><span class="s0">;</span>
+            <span class="s1">Document doc = dBuilder.parse(connection.getInputStream())</span><span class="s0">;</span>
+            <span class="s1">doc.getDocumentElement().normalize()</span><span class="s0">;</span>
+
+            <span class="s1">NodeList standNodes = doc.getElementsByTagName(</span><span class="s4">&quot;Stand&quot;</span><span class="s1">)</span><span class="s0">;</span>
+            <span class="s0">for </span><span class="s1">(</span><span class="s0">int </span><span class="s1">i = </span><span class="s5">0</span><span class="s0">; </span><span class="s1">i &lt; standNodes.getLength()</span><span class="s0">; </span><span class="s1">i++) {</span>
+                <span class="s1">Node standNode = standNodes.item(i)</span><span class="s0">;</span>
+                <span class="s0">if </span><span class="s1">(standNode.getNodeType() == Node.ELEMENT_NODE) {</span>
+                    <span class="s1">Element standElement = (Element) standNode</span><span class="s0">;</span>
+                    <span class="s1">String type = getElementText(standElement</span><span class="s0">, </span><span class="s4">&quot;type&quot;</span><span class="s1">)</span><span class="s0">;</span>
+                    <span class="s1">String code = getElementText(standElement</span><span class="s0">, </span><span class="s4">&quot;code&quot;</span><span class="s1">).toUpperCase()</span><span class="s0">;</span>
+                    <span class="s0">int </span><span class="s1">surface = parseIntElement(standElement</span><span class="s0">, </span><span class="s4">&quot;surface&quot;</span><span class="s1">)</span><span class="s0">;</span>
+                    <span class="s0">float </span><span class="s1">m2price = parseFloatElement(standElement</span><span class="s0">, </span><span class="s4">&quot;m2price&quot;</span><span class="s1">)</span><span class="s0">;</span>
+                    <span class="s0">int </span><span class="s1">luminaries = parseIntElement(standElement</span><span class="s0">, </span><span class="s4">&quot;luminaries&quot;</span><span class="s1">)</span><span class="s0">;</span>
+
+                    <span class="s0">if</span><span class="s1">(code.isEmpty() || type.isEmpty()|| surface &lt;=</span><span class="s5">0 </span><span class="s1">|| m2price &lt;=</span><span class="s5">0 </span><span class="s1">&amp;&amp; (type.equals(</span><span class="s4">&quot;Inside&quot;</span><span class="s1">) &amp;&amp; luminaries&lt;</span><span class="s5">0</span><span class="s1">)) {</span>
+                        <span class="s0">if </span><span class="s1">(code.isEmpty()) {</span>
+                            <span class="s1">errors.add(</span><span class="s4">&quot;The stand doesn't have a code&quot;</span><span class="s1">)</span><span class="s0">;</span>
+                            <span class="s1">code = </span><span class="s4">&quot;NULL&quot;</span><span class="s0">; </span><span class="s6">// ?</span>
+                        <span class="s1">}</span>
+                        <span class="s0">if </span><span class="s1">(type.isEmpty())</span>
+                            <span class="s1">errors.add(</span><span class="s4">&quot;The stand with the: &quot; </span><span class="s1">+ code + </span><span class="s4">&quot; doesn´t have a type or is invalid&quot;</span><span class="s1">)</span><span class="s0">;</span>
+                        <span class="s0">if </span><span class="s1">(surface &lt;= </span><span class="s5">0</span><span class="s1">) </span><span class="s6">//si esta vacio?</span>
+                            <span class="s1">errors.add(</span><span class="s4">&quot;The stand with the code &quot; </span><span class="s1">+ code + </span><span class="s4">&quot; has a invalid value to surface&quot;</span><span class="s1">)</span><span class="s0">;</span>
+                        <span class="s0">if </span><span class="s1">(m2price &lt;= </span><span class="s5">0</span><span class="s1">)</span>
+                            <span class="s1">errors.add(</span><span class="s4">&quot;The stand with the code &quot; </span><span class="s1">+ code + </span><span class="s4">&quot; has a invalid value to square meters price&quot;</span><span class="s1">)</span><span class="s0">;</span>
+                        <span class="s0">if </span><span class="s1">(type.equals(</span><span class="s4">&quot;Inside&quot;</span><span class="s1">)) {</span>
+                            <span class="s0">if</span><span class="s1">(luminaries &lt; </span><span class="s5">0</span><span class="s1">)</span>
+                                <span class="s1">errors.add(</span><span class="s4">&quot;The Inside stand with the code &quot; </span><span class="s1">+ code + </span><span class="s4">&quot; has a invalid value to luminaries&quot;</span><span class="s1">)</span><span class="s0">;</span>
+                        <span class="s1">}</span>
+                        <span class="s0">continue;</span>
+                    <span class="s1">}</span>
+
+                    <span class="s1">NodeList accessoriesNodes = standElement.getElementsByTagName(</span><span class="s4">&quot;Accessory&quot;</span><span class="s1">)</span><span class="s0">;</span>
+                    <span class="s1">ArrayList&lt;Accessory&gt; accessories = </span><span class="s0">new </span><span class="s1">ArrayList&lt;&gt;()</span><span class="s0">;</span>
+                    <span class="s0">for </span><span class="s1">(</span><span class="s0">int </span><span class="s1">j = </span><span class="s5">0</span><span class="s0">; </span><span class="s1">j &lt; accessoriesNodes.getLength()</span><span class="s0">; </span><span class="s1">j++) {</span>
+                        <span class="s1">Node accessoryNode = accessoriesNodes.item(j)</span><span class="s0">;</span>
+                        <span class="s0">if </span><span class="s1">(accessoryNode.getNodeType() == Node.ELEMENT_NODE) {</span>
+                            <span class="s1">Element accessoryElement = (Element) accessoryNode</span><span class="s0">;</span>
+                            <span class="s0">int </span><span class="s1">id = Integer.parseInt(getElementText(accessoryElement</span><span class="s0">, </span><span class="s4">&quot;id&quot;</span><span class="s1">))</span><span class="s0">;</span>
+                            <span class="s1">String description = getElementText(accessoryElement</span><span class="s0">, </span><span class="s4">&quot;description&quot;</span><span class="s1">)</span><span class="s0">;</span>
+                            <span class="s0">float </span><span class="s1">price = Float.parseFloat(getElementText(accessoryElement</span><span class="s0">, </span><span class="s4">&quot;price&quot;</span><span class="s1">))</span><span class="s0">;</span>
+                            <span class="s1">accessories.add(</span><span class="s0">new </span><span class="s1">Accessory(id</span><span class="s0">, </span><span class="s1">description</span><span class="s0">, </span><span class="s1">price))</span><span class="s0">;</span>
+                        <span class="s1">}</span>
+                    <span class="s1">}</span>
+
+                    <span class="s1">Element clientElement = (Element) standElement.getElementsByTagName(</span><span class="s4">&quot;client&quot;</span><span class="s1">).item(</span><span class="s5">0</span><span class="s1">)</span><span class="s0">;</span>
+                    <span class="s0">int </span><span class="s1">clientId = Integer.parseInt(getElementText(clientElement</span><span class="s0">, </span><span class="s4">&quot;id&quot;</span><span class="s1">))</span><span class="s0">;</span>
+                    <span class="s1">String name = getElementText(clientElement</span><span class="s0">, </span><span class="s4">&quot;name&quot;</span><span class="s1">)</span><span class="s0">;</span>
+
+                    <span class="s1">Client client = </span><span class="s0">new </span><span class="s1">Client(clientId</span><span class="s0">, </span><span class="s1">name)</span><span class="s0">;</span>
+
+                    <span class="s1">Stand stand</span><span class="s0">;</span>
+
+                    <span class="s0">if </span><span class="s1">(type.equals(</span><span class="s4">&quot;Inside&quot;</span><span class="s1">)) {</span>
+                        <span class="s1">stand = </span><span class="s0">new </span><span class="s1">Inside(code</span><span class="s0">, </span><span class="s1">surface</span><span class="s0">, </span><span class="s1">m2price</span><span class="s0">, </span><span class="s1">accessories</span><span class="s0">, </span><span class="s1">client</span><span class="s0">, </span><span class="s1">luminaries)</span><span class="s0">; </span><span class="s6">// luminarias puede ser vacio.</span>
+                    <span class="s1">} </span><span class="s0">else </span><span class="s1">{</span>
+                        <span class="s1">stand = </span><span class="s0">new </span><span class="s1">Outside(code</span><span class="s0">, </span><span class="s1">surface</span><span class="s0">, </span><span class="s1">m2price</span><span class="s0">, </span><span class="s1">accessories</span><span class="s0">, </span><span class="s1">client)</span><span class="s0">;</span>
+                    <span class="s1">}</span>
+
+                    <span class="s0">if</span><span class="s1">(!stands.add(stand)){</span>
+                        <span class="s1">errors.add(</span><span class="s4">&quot;Stand Code [&quot;</span><span class="s1">+code+</span><span class="s4">&quot;] already exists.&quot;</span><span class="s1">)</span><span class="s0">;</span>
+                    <span class="s1">}</span>
+                <span class="s1">}</span>
+            <span class="s1">}</span>
+        <span class="s1">} </span><span class="s0">catch </span><span class="s1">(ParserConfigurationException | IOException | SAXException ex) {</span>
+            <span class="s0">throw new </span><span class="s1">RuntimeException(ex)</span><span class="s0">;</span>
+        <span class="s1">}</span>
+        <span class="s0">for</span><span class="s1">(String error: errors){</span>
+            <span class="s1">System.out.println(error)</span><span class="s0">;</span>
+        <span class="s1">}</span>
+        <span class="s1">fair.setStands(stands)</span><span class="s0">;</span>
+        <span class="s0">return </span><span class="s1">fair</span><span class="s0">;</span>
+    <span class="s1">}</span>
+
+    <span class="s0">private static </span><span class="s1">String getElementText(Element element</span><span class="s0">, </span><span class="s1">String tagName) {</span>
+        <span class="s1">NodeList nodeList = element.getElementsByTagName(tagName)</span><span class="s0">;</span>
+        <span class="s0">if </span><span class="s1">(nodeList.getLength() &gt; </span><span class="s5">0</span><span class="s1">) {</span>
+            <span class="s0">return </span><span class="s1">nodeList.item(</span><span class="s5">0</span><span class="s1">).getTextContent()</span><span class="s0">;</span>
+        <span class="s1">} </span><span class="s0">else </span><span class="s1">{</span>
+            <span class="s0">return </span><span class="s4">&quot;&quot;</span><span class="s0">; </span><span class="s6">// si no existe</span>
+        <span class="s1">}</span>
+    <span class="s1">}</span>
+    <span class="s2">/**</span>
+     <span class="s2">* Parses the text content of an XML element and converts it to an integer.</span>
+     <span class="s2">*</span>
+     <span class="s2">* </span><span class="s3">@param </span><span class="s2">element  The XML element containing the text content to be parsed.</span>
+     <span class="s2">* </span><span class="s3">@param </span><span class="s2">tagName  The name of the XML tag to retrieve the content from.</span>
+     <span class="s2">* </span><span class="s3">@return </span><span class="s2">An integer value parsed from the XML element, or 0 if no valid content is found.</span>
+     <span class="s2">*/</span>
+    <span class="s0">private static int </span><span class="s1">parseIntElement(Element element</span><span class="s0">, </span><span class="s1">String tagName) {</span>
+        <span class="s1">NodeList nodeList = element.getElementsByTagName(tagName)</span><span class="s0">;</span>
+        <span class="s0">if </span><span class="s1">(nodeList.getLength() &gt; </span><span class="s5">0</span><span class="s1">) {</span>
+            <span class="s1">String textContent = nodeList.item(</span><span class="s5">0</span><span class="s1">).getTextContent()</span><span class="s0">;</span>
+            <span class="s0">if </span><span class="s1">(textContent != </span><span class="s0">null </span><span class="s1">&amp;&amp; !textContent.isEmpty()) {</span>
+                <span class="s0">return </span><span class="s1">Integer.parseInt(textContent)</span><span class="s0">;</span>
+            <span class="s1">}</span>
+        <span class="s1">}</span>
+        <span class="s0">return </span><span class="s5">0</span><span class="s0">;</span>
+    <span class="s1">}</span>
+    <span class="s2">/**</span>
+     <span class="s2">* Parses the text content of an XML element and converts it to a floating-point number.</span>
+     <span class="s2">*</span>
+     <span class="s2">* </span><span class="s3">@param </span><span class="s2">element  The XML element containing the text content to be parsed.</span>
+     <span class="s2">* </span><span class="s3">@param </span><span class="s2">tagName  The name of the XML tag to retrieve the content from.</span>
+     <span class="s2">* </span><span class="s3">@return </span><span class="s2">A float value parsed from the XML element, or 0.0f if no valid content is found.</span>
+     <span class="s2">*/</span>
+    <span class="s0">private static float </span><span class="s1">parseFloatElement(Element element</span><span class="s0">, </span><span class="s1">String tagName) {</span>
+        <span class="s1">NodeList nodeList = element.getElementsByTagName(tagName)</span><span class="s0">;</span>
+        <span class="s0">if </span><span class="s1">(nodeList.getLength() &gt; </span><span class="s5">0</span><span class="s1">) {</span>
+            <span class="s1">String textContent = nodeList.item(</span><span class="s5">0</span><span class="s1">).getTextContent()</span><span class="s0">;</span>
+            <span class="s0">if </span><span class="s1">(textContent != </span><span class="s0">null </span><span class="s1">&amp;&amp; !textContent.isEmpty()) {</span>
+                <span class="s0">return </span><span class="s1">Float.parseFloat(textContent)</span><span class="s0">;</span>
+            <span class="s1">}</span>
+        <span class="s1">}</span>
+        <span class="s0">return </span><span class="s5">0.0f</span><span class="s0">;</span>
+    <span class="s1">}</span>
+<span class="s1">}</span></pre>
+</body>
+</html>

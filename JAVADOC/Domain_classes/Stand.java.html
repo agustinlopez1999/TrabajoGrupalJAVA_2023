@@ -1,0 +1,214 @@
+<html>
+<head>
+<title>Stand.java</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<style type="text/css">
+.s0 { color: #cc7832;}
+.s1 { color: #a9b7c6;}
+.s2 { color: #629755; font-style: italic;}
+.s3 { color: #629755; font-weight: bold; font-style: italic;}
+.s4 { color: #6897bb;}
+.s5 { color: #6a8759;}
+</style>
+</head>
+<body bgcolor="#2b2b2b">
+<table CELLSPACING=0 CELLPADDING=5 COLS=1 WIDTH="100%" BGCOLOR="#606060" >
+<tr><td><center>
+<font face="Arial, Helvetica" color="#000000">
+Stand.java</font>
+</center></td></tr></table>
+<pre><span class="s0">package </span><span class="s1">Domain_classes</span><span class="s0">;</span>
+<span class="s0">import </span><span class="s1">java.util.*</span><span class="s0">;</span>
+<span class="s2">/**</span>
+ <span class="s2">* The `Stand` class represents an exhibition stand with specific attributes.</span>
+ <span class="s2">* Each stand is associated with a unique code, a surface area, a price per square meter, a list of accessories,</span>
+ <span class="s2">* and a client. This class implements the `Comparable` interface to allow sorting based on the stand's code.</span>
+ <span class="s2">*/</span>
+<span class="s0">public class </span><span class="s1">Stand </span><span class="s0">implements </span><span class="s1">Comparable&lt;Stand&gt;{</span>
+    <span class="s2">/**</span>
+     <span class="s2">* The unique code for the stand.</span>
+     <span class="s2">*/</span>
+    <span class="s0">private </span><span class="s1">String code</span><span class="s0">;</span>
+    <span class="s2">/**</span>
+     <span class="s2">* The surface area of the stand in square meters.</span>
+     <span class="s2">*/</span>
+    <span class="s0">private float </span><span class="s1">surface</span><span class="s0">;</span>
+    <span class="s2">/**</span>
+     <span class="s2">* The price per square meter for the stand.</span>
+     <span class="s2">*/</span>
+    <span class="s0">private float </span><span class="s1">m2price</span><span class="s0">;</span>
+    <span class="s2">/**</span>
+     <span class="s2">* A list of accessories associated with the stand.</span>
+     <span class="s2">*/</span>
+    <span class="s0">private </span><span class="s1">ArrayList&lt;Accessory&gt; accesories = </span><span class="s0">new </span><span class="s1">ArrayList&lt;&gt;()</span><span class="s0">;</span>
+    <span class="s2">/**</span>
+     <span class="s2">* The client associated with the stand.</span>
+     <span class="s2">*/</span>
+    <span class="s0">private </span><span class="s1">Client standClient</span><span class="s0">;</span>
+    <span class="s2">/**</span>
+     <span class="s2">* Constructs a new empty `Stand`.</span>
+     <span class="s2">*/</span>
+    <span class="s0">public </span><span class="s1">Stand() {</span>
+    <span class="s1">}</span>
+    <span class="s2">/**</span>
+     <span class="s2">* Constructs a Stand with the specified attributes.</span>
+     <span class="s2">*</span>
+     <span class="s2">* </span><span class="s3">@param </span><span class="s2">code         The unique code for the stand.</span>
+     <span class="s2">* </span><span class="s3">@param </span><span class="s2">surface      The surface area of the stand.</span>
+     <span class="s2">* </span><span class="s3">@param </span><span class="s2">m2price      The price per square meter.</span>
+     <span class="s2">* </span><span class="s3">@param </span><span class="s2">accessories  A list of accessories associated with the stand.</span>
+     <span class="s2">* </span><span class="s3">@param </span><span class="s2">standClient  The client associated with the stand.</span>
+     <span class="s2">*/</span>
+    <span class="s0">public </span><span class="s1">Stand(String code</span><span class="s0">, float </span><span class="s1">surface</span><span class="s0">, float </span><span class="s1">m2price</span><span class="s0">, </span><span class="s1">ArrayList&lt;Accessory&gt; accessories</span><span class="s0">, </span><span class="s1">Client standClient) {</span>
+        <span class="s0">this</span><span class="s1">.code = code</span><span class="s0">;</span>
+        <span class="s0">this</span><span class="s1">.surface = surface</span><span class="s0">;</span>
+        <span class="s0">this</span><span class="s1">.m2price = m2price</span><span class="s0">;</span>
+        <span class="s0">this</span><span class="s1">.accesories = accessories</span><span class="s0">;</span>
+        <span class="s0">this</span><span class="s1">.standClient = standClient</span><span class="s0">;</span>
+    <span class="s1">}</span>
+    <span class="s2">/**</span>
+     <span class="s2">* Retrieves the client associated with the stand.</span>
+     <span class="s2">*</span>
+     <span class="s2">* </span><span class="s3">@return </span><span class="s2">The client associated with the stand.</span>
+     <span class="s2">*/</span>
+    <span class="s0">public </span><span class="s1">Client getStandClient() {</span>
+        <span class="s0">return </span><span class="s1">standClient</span><span class="s0">;</span>
+    <span class="s1">}</span>
+    <span class="s2">/**</span>
+     <span class="s2">* Calculates and returns the total price of all accessories associated with the stand.</span>
+     <span class="s2">*</span>
+     <span class="s2">* </span><span class="s3">@return </span><span class="s2">The total price of accessories.</span>
+     <span class="s2">*/</span>
+    <span class="s0">public float </span><span class="s1">getAccesorySumPrice(){</span>
+        <span class="s0">float </span><span class="s1">total = </span><span class="s4">0</span><span class="s0">;</span>
+        <span class="s0">for</span><span class="s1">(Accessory aux:accesories)</span>
+            <span class="s1">total+=aux.getPrice()</span><span class="s0">;</span>
+        <span class="s0">return </span><span class="s1">total</span><span class="s0">;</span>
+    <span class="s1">}</span>
+    <span class="s2">/**</span>
+     <span class="s2">* Retrieves the number of accessories associated with the stand.</span>
+     <span class="s2">*</span>
+     <span class="s2">* </span><span class="s3">@return </span><span class="s2">The number of accessories.</span>
+     <span class="s2">*/</span>
+    <span class="s0">public int </span><span class="s1">getAccesoryAmount(){</span>
+        <span class="s0">int </span><span class="s1">total = </span><span class="s4">0</span><span class="s0">;</span>
+        <span class="s0">for</span><span class="s1">(Accessory aux:accesories)</span>
+            <span class="s1">total++</span><span class="s0">;</span>
+        <span class="s0">return </span><span class="s1">total</span><span class="s0">;</span>
+    <span class="s1">}</span>
+
+    <span class="s2">/**</span>
+     <span class="s2">* Retrieves the code of the stand.</span>
+     <span class="s2">*</span>
+     <span class="s2">* </span><span class="s3">@return </span><span class="s2">The unique code of the stand.</span>
+     <span class="s2">*/</span>
+    <span class="s0">public </span><span class="s1">String getCode() {</span>
+        <span class="s0">return </span><span class="s1">code</span><span class="s0">;</span>
+    <span class="s1">}</span>
+
+    <span class="s2">/**</span>
+     <span class="s2">* Retrieves the surface of the stand.</span>
+     <span class="s2">*</span>
+     <span class="s2">* </span><span class="s3">@return </span><span class="s2">The surface the stand.</span>
+     <span class="s2">*/</span>
+    <span class="s0">public float </span><span class="s1">getSurface() {</span>
+        <span class="s0">return </span><span class="s1">surface</span><span class="s0">;</span>
+    <span class="s1">}</span>
+
+    <span class="s2">/**</span>
+     <span class="s2">* Retrieves meters square price of the stand.</span>
+     <span class="s2">*</span>
+     <span class="s2">* </span><span class="s3">@return </span><span class="s2">The meters square price of the stand.</span>
+     <span class="s2">*/</span>
+    <span class="s0">public float </span><span class="s1">getM2price() {</span>
+        <span class="s0">return </span><span class="s1">m2price</span><span class="s0">;</span>
+    <span class="s1">}</span>
+    <span class="s2">/**</span>
+     <span class="s2">* Sets the code of the stand.</span>
+     <span class="s2">*</span>
+     <span class="s2">* </span><span class="s3">@param </span><span class="s2">code The unique code for the stand.</span>
+     <span class="s2">*/</span>
+    <span class="s0">public void </span><span class="s1">setCode(String code) {</span>
+        <span class="s0">this</span><span class="s1">.code = code</span><span class="s0">;</span>
+    <span class="s1">}</span>
+
+    <span class="s2">/**</span>
+     <span class="s2">* Sets the surface of the stand.</span>
+     <span class="s2">*</span>
+     <span class="s2">* </span><span class="s3">@param </span><span class="s2">surface The surface area of the stand.</span>
+     <span class="s2">*/</span>
+    <span class="s0">public void </span><span class="s1">setSurface(</span><span class="s0">float </span><span class="s1">surface) {</span>
+        <span class="s0">this</span><span class="s1">.surface = surface</span><span class="s0">;</span>
+    <span class="s1">}</span>
+
+    <span class="s2">/**</span>
+     <span class="s2">* Sets the meters square price of the stand.</span>
+     <span class="s2">*</span>
+     <span class="s2">* </span><span class="s3">@param </span><span class="s2">m2price The price per square meter.</span>
+     <span class="s2">*/</span>
+    <span class="s0">public void </span><span class="s1">setM2price(</span><span class="s0">float </span><span class="s1">m2price) {</span>
+        <span class="s0">this</span><span class="s1">.m2price = m2price</span><span class="s0">;</span>
+    <span class="s1">}</span>
+    <span class="s2">/**</span>
+     <span class="s2">* Calculates and returns the final value of the stand.</span>
+     <span class="s2">* The final value depends on the stand type (Inside or Outside) and accessories.</span>
+     <span class="s2">*</span>
+     <span class="s2">* </span><span class="s3">@return </span><span class="s2">The final value of the stand.</span>
+     <span class="s2">*/</span>
+    <span class="s0">public float </span><span class="s1">finalValue(){</span>
+        <span class="s0">return </span><span class="s4">0</span><span class="s0">;</span>
+    <span class="s1">}</span>
+    <span class="s2">/**</span>
+     <span class="s2">* Adds an accessory to the list of accessories for this stand.</span>
+     <span class="s2">*</span>
+     <span class="s2">* </span><span class="s3">@param </span><span class="s2">_accessory The accessory to be added.</span>
+     <span class="s2">*/</span>
+    <span class="s0">public void </span><span class="s1">addAccessory(Accessory _accessory){</span>
+        <span class="s1">accesories.add(_accessory)</span><span class="s0">;</span>
+    <span class="s1">}</span>
+    <span class="s2">/**</span>
+     <span class="s2">* Retrieves the list of accessories associated with the stand.</span>
+     <span class="s2">*</span>
+     <span class="s2">* </span><span class="s3">@return </span><span class="s2">The list of accessories.</span>
+     <span class="s2">*/</span>
+    <span class="s0">public </span><span class="s1">ArrayList&lt;Accessory&gt; getAccesories() {</span>
+        <span class="s0">return </span><span class="s1">accesories</span><span class="s0">;</span>
+    <span class="s1">}</span>
+
+    <span class="s2">/**</span>
+     <span class="s2">* Generates a string representation of the stand's details.</span>
+     <span class="s2">*</span>
+     <span class="s2">* </span><span class="s3">@return </span><span class="s2">A string containing the stand's details.</span>
+     <span class="s2">*/</span>
+    <span class="s1">@Override</span>
+    <span class="s0">public </span><span class="s1">String toString() {</span>
+        <span class="s1">StringBuilder sb = </span><span class="s0">new </span><span class="s1">StringBuilder()</span><span class="s0">;</span>
+        <span class="s1">sb.append(</span><span class="s5">&quot;Stand details:</span><span class="s0">\n</span><span class="s5">&quot;</span><span class="s1">)</span><span class="s0">;</span>
+        <span class="s1">sb.append(</span><span class="s5">&quot;Code: &quot;</span><span class="s1">).append(code).append(</span><span class="s5">&quot;</span><span class="s0">\n</span><span class="s5">&quot;</span><span class="s1">)</span><span class="s0">;</span>
+        <span class="s1">sb.append(</span><span class="s5">&quot;Surface: &quot;</span><span class="s1">).append(surface).append(</span><span class="s5">&quot;</span><span class="s0">\n</span><span class="s5">&quot;</span><span class="s1">)</span><span class="s0">;</span>
+        <span class="s1">sb.append(</span><span class="s5">&quot;Price per m²: &quot;</span><span class="s1">).append(m2price).append(</span><span class="s5">&quot;</span><span class="s0">\n</span><span class="s5">&quot;</span><span class="s1">)</span><span class="s0">;</span>
+
+        <span class="s1">sb.append(</span><span class="s5">&quot;Accessories:</span><span class="s0">\n</span><span class="s5">&quot;</span><span class="s1">)</span><span class="s0">;</span>
+        <span class="s0">for </span><span class="s1">(Accessory accessory : accesories) {</span>
+            <span class="s1">sb.append(</span><span class="s5">&quot;ID: &quot;</span><span class="s1">).append(accessory.getId()).append(</span><span class="s5">&quot;, Description: &quot;</span><span class="s1">).append(accessory.getDescription()).append(</span><span class="s5">&quot;, Price: &quot;</span><span class="s1">).append(accessory.getPrice()).append(</span><span class="s5">&quot;</span><span class="s0">\n</span><span class="s5">&quot;</span><span class="s1">)</span><span class="s0">;</span>
+        <span class="s1">}</span>
+
+        <span class="s1">sb.append(</span><span class="s5">&quot;Client details:</span><span class="s0">\n</span><span class="s5">&quot;</span><span class="s1">)</span><span class="s0">;</span>
+        <span class="s1">sb.append(</span><span class="s5">&quot;Client ID: &quot;</span><span class="s1">).append(standClient.getNumber()).append(</span><span class="s5">&quot;, Name: &quot;</span><span class="s1">).append(standClient.getName()).append(</span><span class="s5">&quot;</span><span class="s0">\n</span><span class="s5">&quot;</span><span class="s1">)</span><span class="s0">;</span>
+
+        <span class="s0">return </span><span class="s1">sb.toString()</span><span class="s0">;</span>
+    <span class="s1">}</span>
+    <span class="s2">/**</span>
+     <span class="s2">* Compares this stand to another stand based on their unique codes.</span>
+     <span class="s2">*</span>
+     <span class="s2">* </span><span class="s3">@param </span><span class="s2">auxStand The stand to compare to.</span>
+     <span class="s2">* </span><span class="s3">@return </span><span class="s2">A negative value if this stand's code is less, zero if equal, or a positive value if greater.</span>
+     <span class="s2">*/</span>
+    <span class="s1">@Override</span>
+    <span class="s0">public int </span><span class="s1">compareTo(Stand auxStand) {</span>
+        <span class="s0">return this</span><span class="s1">.code.compareTo(auxStand.code)</span><span class="s0">;</span>
+    <span class="s1">}</span>
+<span class="s1">}</span>
+</pre>
+</body>
+</html>

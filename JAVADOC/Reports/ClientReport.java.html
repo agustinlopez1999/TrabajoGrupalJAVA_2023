@@ -1,0 +1,66 @@
+<html>
+<head>
+<title>ClientReport.java</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<style type="text/css">
+.s0 { color: #cc7832;}
+.s1 { color: #a9b7c6;}
+.s2 { color: #629755; font-style: italic;}
+.s3 { color: #629755; font-weight: bold; font-style: italic;}
+.s4 { color: #6a8759;}
+</style>
+</head>
+<body bgcolor="#2b2b2b">
+<table CELLSPACING=0 CELLPADDING=5 COLS=1 WIDTH="100%" BGCOLOR="#606060" >
+<tr><td><center>
+<font face="Arial, Helvetica" color="#000000">
+ClientReport.java</font>
+</center></td></tr></table>
+<pre><span class="s0">package </span><span class="s1">Reports</span><span class="s0">;</span>
+<span class="s0">import </span><span class="s1">Domain_classes.*</span><span class="s0">;</span>
+<span class="s0">import </span><span class="s1">java.util.TreeSet</span><span class="s0">;</span>
+<span class="s0">import </span><span class="s1">java.io.FileWriter</span><span class="s0">;</span>
+<span class="s0">import </span><span class="s1">java.io.IOException</span><span class="s0">;</span>
+
+<span class="s2">/**</span>
+ <span class="s2">* The `ClientReport` class is responsible for generating and displaying a report of stands associated with a</span>
+ <span class="s2">* specific client identified by a code number. The report is saved to a specified file.</span>
+ <span class="s2">*/</span>
+<span class="s0">public class </span><span class="s1">ClientReport {</span>
+    <span class="s2">/**</span>
+     <span class="s2">* Generates and displays a report of stands associated with a specific client identified by the provided code number.</span>
+     <span class="s2">* The report is saved to the specified file.</span>
+     <span class="s2">*</span>
+     <span class="s2">* </span><span class="s3">@param </span><span class="s2">_codeNumber The code number of the client for whom the report is generated.</span>
+     <span class="s2">* </span><span class="s3">@param </span><span class="s2">fair        The `Fair` instance containing data about stands and clients.</span>
+     <span class="s2">* </span><span class="s3">@param </span><span class="s2">fileName    The name of the file where the report will be saved.</span>
+     <span class="s2">*/</span>
+    <span class="s0">public void </span><span class="s1">showClientStands(</span><span class="s0">int </span><span class="s1">_codeNumber</span><span class="s0">, </span><span class="s1">Fair fair</span><span class="s0">, </span><span class="s1">String fileName){</span>
+        <span class="s1">TreeSet&lt;Stand&gt; aux = </span><span class="s0">new </span><span class="s1">TreeSet&lt;&gt;()</span><span class="s0">;</span>
+        <span class="s1">String reportCode</span><span class="s0">;</span>
+        <span class="s1">String reportNoStands</span><span class="s0">;</span>
+        <span class="s0">try </span><span class="s1">(FileWriter fileWriter = </span><span class="s0">new </span><span class="s1">FileWriter(fileName</span><span class="s0">, false</span><span class="s1">)){</span>
+            <span class="s1">reportCode = </span><span class="s4">&quot;Client [&quot;</span><span class="s1">+_codeNumber+</span><span class="s4">&quot;] Stand/s:&quot;</span><span class="s0">;</span>
+            <span class="s1">System.out.println(reportCode)</span><span class="s0">;</span>
+            <span class="s1">fileWriter.write(reportCode)</span><span class="s0">;</span>
+            <span class="s1">aux = fair.getClientStands(aux</span><span class="s0">,</span><span class="s1">_codeNumber)</span><span class="s0">;</span>
+            <span class="s0">if</span><span class="s1">(aux.isEmpty()){</span>
+                <span class="s1">reportNoStands = </span><span class="s4">&quot;</span><span class="s0">\n</span><span class="s4">Client doesn't have any Stands </span><span class="s0">\n</span><span class="s4">&quot;</span><span class="s0">;</span>
+                <span class="s1">System.out.println(reportNoStands)</span><span class="s0">;</span>
+                <span class="s1">fileWriter.write(reportNoStands)</span><span class="s0">;</span>
+            <span class="s1">}</span>
+            <span class="s0">else</span><span class="s1">{</span>
+                <span class="s0">for</span><span class="s1">(Stand stand:aux){</span>
+                    <span class="s1">System.out.println(stand+</span><span class="s4">&quot;</span><span class="s0">\n</span><span class="s4">&quot;</span><span class="s1">)</span><span class="s0">;</span>
+                    <span class="s1">fileWriter.write(stand+</span><span class="s4">&quot;</span><span class="s0">\n</span><span class="s4">&quot;</span><span class="s1">)</span><span class="s0">;</span>
+                <span class="s1">}</span>
+            <span class="s1">}</span>
+            <span class="s1">System.out.println(</span><span class="s4">&quot;Client report saved in '&quot; </span><span class="s1">+ fileName + </span><span class="s4">&quot;'&quot;</span><span class="s1">)</span><span class="s0">;</span>
+        <span class="s1">} </span><span class="s0">catch </span><span class="s1">(IOException e){</span>
+            <span class="s1">e.printStackTrace()</span><span class="s0">;</span>
+        <span class="s1">}</span>
+    <span class="s1">}</span>
+<span class="s1">}</span>
+</pre>
+</body>
+</html>

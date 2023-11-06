@@ -23,7 +23,31 @@ public class Fair{
     public Fair() {
         this.stands = new TreeSet<>();
     }
-
+    /**
+     * Retrieves stands associated with a specific client.
+     *
+     * @param aux         A TreeSet to store the client's stands.
+     * @param _codeNumber The client number.
+     * @return A TreeSet of stands associated with the client.
+     */
+    public TreeSet<Stand> getClientStands(TreeSet<Stand> aux, int _codeNumber){
+        for(Stand stand: stands){
+            if(stand.getStandClient().getNumber() == _codeNumber)
+                aux.add(stand);
+        }
+        return aux;
+    }
+    /**
+     * Retrieves an ArrayList of stands sorted by price.
+     *
+     * @return An ArrayList of stands sorted by price.
+     */
+    public ArrayList<Stand> getSortedByPrice(){
+        StandPriceComparator priceComparator = new StandPriceComparator();
+        ArrayList<Stand> aux = new ArrayList<>(stands);
+        aux.sort(priceComparator);
+        return aux;
+    }
     /**
      * Retrieves the collection of stands.
      *
@@ -32,6 +56,7 @@ public class Fair{
     private TreeSet<Stand> getStands() {
         return stands;
     }
+
     /**
      * Sets the collection of stands.
      *
@@ -46,15 +71,6 @@ public class Fair{
     public void loadStandsFromXML() {
         this.stands = ClassXML.loadFairXML().getStands();
     }
-    /**
-     * Checks if the collection of stands is empty.
-     *
-     * @return true if the collection is empty, false otherwise.
-     */
-    public boolean Empty(){
-        return stands==null;
-    }
-
     /**
      * Displays details of all stands in the fair.
      */
@@ -87,26 +103,6 @@ public class Fair{
         }
     }
     /**
-     * Prints details of all stands in the fair.
-     */
-    public void printStandsDetails() {
-        for (Stand stand : stands) {
-            System.out.println(stand.toString());
-            System.out.println("----------------------------------------");
-        }
-    }
-    /**
-     * Retrieves an ArrayList of stands sorted by price.
-     *
-     * @return An ArrayList of stands sorted by price.
-     */
-    public ArrayList<Stand> GetSortedByPrice(){
-        StandPriceComparator priceComparator = new StandPriceComparator();
-        ArrayList<Stand> aux = new ArrayList<>(stands);
-        aux.sort(priceComparator);
-        return aux;
-    }
-    /**
      * Loads accessories and their counts into a TreeMap.
      *
      * @return A TreeMap containing accessories and their counts.
@@ -125,20 +121,6 @@ public class Fair{
             }
         }
         return tMap;
-    }
-    /**
-     * Retrieves stands associated with a specific client.
-     *
-     * @param aux         A TreeSet to store the client's stands.
-     * @param _codeNumber The client number.
-     * @return A TreeSet of stands associated with the client.
-     */
-    public TreeSet<Stand> getClientStands(TreeSet<Stand> aux, int _codeNumber){
-        for(Stand stand: stands){
-            if(stand.getStandClient().getNumber() == _codeNumber)
-                aux.add(stand);
-        }
-        return aux;
     }
 
 }

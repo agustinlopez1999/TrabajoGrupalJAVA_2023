@@ -1,0 +1,148 @@
+<html>
+<head>
+<title>Fair.java</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<style type="text/css">
+.s0 { color: #cc7832;}
+.s1 { color: #a9b7c6;}
+.s2 { color: #629755; font-style: italic;}
+.s3 { color: #629755; font-weight: bold; font-style: italic;}
+.s4 { color: #6a8759;}
+.s5 { color: #6897bb;}
+</style>
+</head>
+<body bgcolor="#2b2b2b">
+<table CELLSPACING=0 CELLPADDING=5 COLS=1 WIDTH="100%" BGCOLOR="#606060" >
+<tr><td><center>
+<font face="Arial, Helvetica" color="#000000">
+Fair.java</font>
+</center></td></tr></table>
+<pre><span class="s0">package </span><span class="s1">Domain_classes</span><span class="s0">;</span>
+
+<span class="s0">import </span><span class="s1">java.util.ArrayList</span><span class="s0">;</span>
+<span class="s0">import </span><span class="s1">java.util.TreeMap</span><span class="s0">;</span>
+<span class="s0">import </span><span class="s1">java.util.TreeSet</span><span class="s0">;</span>
+
+<span class="s0">import </span><span class="s1">Comparator.AccessoriesComparator</span><span class="s0">;</span>
+<span class="s0">import </span><span class="s1">Comparator.StandPriceComparator</span><span class="s0">;</span>
+<span class="s0">import </span><span class="s1">XML.*</span><span class="s0">;</span>
+
+
+<span class="s2">/**</span>
+ <span class="s2">* The Fair class represents a fair that includes a collection of stands.</span>
+ <span class="s2">* It provides various methods for managing and displaying information about the stands.</span>
+ <span class="s2">*/</span>
+
+<span class="s0">public class </span><span class="s1">Fair{</span>
+    <span class="s0">private </span><span class="s1">TreeSet&lt;Stand&gt; stands</span><span class="s0">;</span>
+
+    <span class="s2">/**</span>
+     <span class="s2">* Constructs a Fair object with an empty collection of stands.</span>
+     <span class="s2">*/</span>
+    <span class="s0">public </span><span class="s1">Fair() {</span>
+        <span class="s0">this</span><span class="s1">.stands = </span><span class="s0">new </span><span class="s1">TreeSet&lt;&gt;()</span><span class="s0">;</span>
+    <span class="s1">}</span>
+    <span class="s2">/**</span>
+     <span class="s2">* Retrieves stands associated with a specific client.</span>
+     <span class="s2">*</span>
+     <span class="s2">* </span><span class="s3">@param </span><span class="s2">aux         A TreeSet to store the client's stands.</span>
+     <span class="s2">* </span><span class="s3">@param </span><span class="s2">_codeNumber The client number.</span>
+     <span class="s2">* </span><span class="s3">@return </span><span class="s2">A TreeSet of stands associated with the client.</span>
+     <span class="s2">*/</span>
+    <span class="s0">public </span><span class="s1">TreeSet&lt;Stand&gt; getClientStands(TreeSet&lt;Stand&gt; aux</span><span class="s0">, int </span><span class="s1">_codeNumber){</span>
+        <span class="s0">for</span><span class="s1">(Stand stand: stands){</span>
+            <span class="s0">if</span><span class="s1">(stand.getStandClient().getNumber() == _codeNumber)</span>
+                <span class="s1">aux.add(stand)</span><span class="s0">;</span>
+        <span class="s1">}</span>
+        <span class="s0">return </span><span class="s1">aux</span><span class="s0">;</span>
+    <span class="s1">}</span>
+    <span class="s2">/**</span>
+     <span class="s2">* Retrieves an ArrayList of stands sorted by price.</span>
+     <span class="s2">*</span>
+     <span class="s2">* </span><span class="s3">@return </span><span class="s2">An ArrayList of stands sorted by price.</span>
+     <span class="s2">*/</span>
+    <span class="s0">public </span><span class="s1">ArrayList&lt;Stand&gt; getSortedByPrice(){</span>
+        <span class="s1">StandPriceComparator priceComparator = </span><span class="s0">new </span><span class="s1">StandPriceComparator()</span><span class="s0">;</span>
+        <span class="s1">ArrayList&lt;Stand&gt; aux = </span><span class="s0">new </span><span class="s1">ArrayList&lt;&gt;(stands)</span><span class="s0">;</span>
+        <span class="s1">aux.sort(priceComparator)</span><span class="s0">;</span>
+        <span class="s0">return </span><span class="s1">aux</span><span class="s0">;</span>
+    <span class="s1">}</span>
+    <span class="s2">/**</span>
+     <span class="s2">* Retrieves the collection of stands.</span>
+     <span class="s2">*</span>
+     <span class="s2">* </span><span class="s3">@return </span><span class="s2">The collection of stands.</span>
+     <span class="s2">*/</span>
+    <span class="s0">private </span><span class="s1">TreeSet&lt;Stand&gt; getStands() {</span>
+        <span class="s0">return </span><span class="s1">stands</span><span class="s0">;</span>
+    <span class="s1">}</span>
+
+    <span class="s2">/**</span>
+     <span class="s2">* Sets the collection of stands.</span>
+     <span class="s2">*</span>
+     <span class="s2">* </span><span class="s3">@param </span><span class="s2">stands The new collection of stands.</span>
+     <span class="s2">*/</span>
+    <span class="s0">public void </span><span class="s1">setStands(TreeSet&lt;Stand&gt; stands) {</span>
+        <span class="s0">this</span><span class="s1">.stands = stands</span><span class="s0">;</span>
+    <span class="s1">}</span>
+    <span class="s2">/**</span>
+     <span class="s2">* Loads stands from an XML source.</span>
+     <span class="s2">*/</span>
+    <span class="s0">public void </span><span class="s1">loadStandsFromXML() {</span>
+        <span class="s0">this</span><span class="s1">.stands = ClassXML.loadFairXML().getStands()</span><span class="s0">;</span>
+    <span class="s1">}</span>
+    <span class="s2">/**</span>
+     <span class="s2">* Displays details of all stands in the fair.</span>
+     <span class="s2">*/</span>
+    <span class="s0">public void </span><span class="s1">showAllStands(){</span>
+        <span class="s0">for </span><span class="s1">(Stand stand : stands){</span>
+            <span class="s1">System.out.println(</span><span class="s4">&quot;</span><span class="s0">\t</span><span class="s4">(Stand Details:)&quot;</span><span class="s1">)</span><span class="s0">;</span>
+            <span class="s1">System.out.println(</span><span class="s4">&quot;Code: &quot; </span><span class="s1">+ stand.getCode())</span><span class="s0">;</span>
+            <span class="s1">System.out.println(</span><span class="s4">&quot;Surface: &quot; </span><span class="s1">+ stand.getSurface())</span><span class="s0">;</span>
+            <span class="s1">System.out.println(</span><span class="s4">&quot;M2 Price: &quot; </span><span class="s1">+ stand.getM2price())</span><span class="s0">;</span>
+
+            <span class="s0">if </span><span class="s1">(stand </span><span class="s0">instanceof </span><span class="s1">Inside insideStand) {</span>
+                <span class="s1">System.out.println(</span><span class="s4">&quot;Luminaries: &quot; </span><span class="s1">+ insideStand.getLuminaries())</span><span class="s0">;</span>
+            <span class="s1">}</span>
+
+            <span class="s1">System.out.println(</span><span class="s4">&quot;Accessories:&quot;</span><span class="s1">)</span><span class="s0">;</span>
+            <span class="s1">ArrayList&lt;Accessory&gt; accessories = stand.getAccesories()</span><span class="s0">;</span>
+            <span class="s0">for </span><span class="s1">(Accessory accessory : accessories) {</span>
+                <span class="s1">System.out.println(</span><span class="s4">&quot;{&quot;</span><span class="s1">)</span><span class="s0">;</span>
+                <span class="s1">System.out.println(</span><span class="s4">&quot;ID: &quot; </span><span class="s1">+ accessory.getId())</span><span class="s0">;</span>
+                <span class="s1">System.out.println(</span><span class="s4">&quot;Description: &quot; </span><span class="s1">+ accessory.getDescription())</span><span class="s0">;</span>
+                <span class="s1">System.out.println(</span><span class="s4">&quot;Price: &quot; </span><span class="s1">+ accessory.getPrice())</span><span class="s0">;</span>
+                <span class="s1">System.out.println(</span><span class="s4">&quot;}&quot;</span><span class="s1">)</span><span class="s0">;</span>
+            <span class="s1">}</span>
+
+            <span class="s1">Client client = stand.getStandClient()</span><span class="s0">;</span>
+            <span class="s1">System.out.println(</span><span class="s4">&quot;Client:&quot;</span><span class="s1">)</span><span class="s0">;</span>
+            <span class="s1">System.out.println(</span><span class="s4">&quot;Client Number: &quot; </span><span class="s1">+ client.getNumber())</span><span class="s0">;</span>
+            <span class="s1">System.out.println(</span><span class="s4">&quot;Client Name: &quot; </span><span class="s1">+ client.getName())</span><span class="s0">;</span>
+            <span class="s1">System.out.println()</span><span class="s0">;</span>
+        <span class="s1">}</span>
+    <span class="s1">}</span>
+    <span class="s2">/**</span>
+     <span class="s2">* Loads accessories and their counts into a TreeMap.</span>
+     <span class="s2">*</span>
+     <span class="s2">* </span><span class="s3">@return </span><span class="s2">A TreeMap containing accessories and their counts.</span>
+     <span class="s2">*/</span>
+    <span class="s0">public </span><span class="s1">TreeMap loadAccessories(){</span>
+        <span class="s1">AccessoriesComparator accessoriesComparator = </span><span class="s0">new </span><span class="s1">AccessoriesComparator()</span><span class="s0">;</span>
+        <span class="s1">TreeMap&lt;Accessory</span><span class="s0">, </span><span class="s1">Integer&gt; tMap = </span><span class="s0">new </span><span class="s1">TreeMap&lt;&gt;(accessoriesComparator)</span><span class="s0">;</span>
+        <span class="s1">Integer count</span><span class="s0">;</span>
+        <span class="s0">for </span><span class="s1">(Stand stand: stands) {</span>
+            <span class="s0">for </span><span class="s1">(Accessory accessory : stand.getAccesories()) {</span>
+                <span class="s1">count = tMap.get(accessory)</span><span class="s0">;</span>
+                <span class="s0">if </span><span class="s1">(count == </span><span class="s0">null</span><span class="s1">)</span>
+                    <span class="s1">tMap.put(accessory</span><span class="s0">, </span><span class="s5">1</span><span class="s1">)</span><span class="s0">;</span>
+                <span class="s0">else</span>
+                    <span class="s1">tMap.put(accessory</span><span class="s0">, </span><span class="s1">count + </span><span class="s5">1</span><span class="s1">)</span><span class="s0">;</span>
+            <span class="s1">}</span>
+        <span class="s1">}</span>
+        <span class="s0">return </span><span class="s1">tMap</span><span class="s0">;</span>
+    <span class="s1">}</span>
+
+<span class="s1">}</span>
+</pre>
+</body>
+</html>
